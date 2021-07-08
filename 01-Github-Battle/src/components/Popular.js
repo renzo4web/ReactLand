@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-
-import { navbar } from "./Popular.module.css";
+import {
+  FaUser,
+  FaStar,
+  FaCodeBranch,
+  FaExclamationTriangle,
+} from "react-icons/fa";
+import { navbar, headerLg, centerText } from "./Popular.module.css";
 import PropTypes from "prop-types";
 import fetchPopularRepos from "../utils/api";
 
@@ -26,6 +31,58 @@ const LanguajesNav = ({ selected, onUpdateLanguaje }) => {
 LanguajesNav.propTypes = {
   selected: PropTypes.string.isRequired,
   onUpdateLanguaje: PropTypes.func.isRequired,
+};
+const ReposGrid = ({ repos }) => {
+  return (
+    <ul className="grid">
+      {repos.map((repo, i) => {
+        const {
+          id,
+          name,
+          owner,
+          html_url,
+          stargazers_count,
+          forks,
+          open_issues,
+        } = repo;
+        const { login, avatar_url } = owner;
+
+        return (
+          <li key={id} className="repo">
+            <h4 className={(headerLg, centerText)}>#{i + 1}</h4>
+            <img
+              src={avatar_url}
+              className="avatar"
+              alt={`Avatar for ${login}`}
+            />
+            <h2 className="center-text">
+              <a className="link" href={html_url}>
+                {login}
+              </a>
+            </h2>
+            <ul>
+              <li>
+                <FaUser color="rgb(255,191,116)" size={22} />
+                <a href={`https://github.com/${login}`}>{login}</a>
+              </li>
+              <li>
+                <FaStar color="rgb(255,215,0)" size={22} />
+                {stargazers_count.toLocaleString()} stars
+              </li>
+              <li>
+                <FaCodeBranch color="rgb(129,195,245)" size={22} />
+                {forks.toLocaleString()} forks
+              </li>
+              <li>
+                <FaExclamationTriangle color="rgb(241,138,147)" size={22} />
+                {open_issues.toLocaleString()} open issues
+              </li>
+            </ul>
+          </li>
+        );
+      })}
+    </ul>
+  );
 };
 
 export default class Popular extends Component {
@@ -53,10 +110,12 @@ export default class Popular extends Component {
   async componentDidMount() {
     const fetchRepos = await fetchPopularRepos();
     console.log(fetchRepos);
-    this.setState(({ repos, selectedLanguage }) => ({
-      ...repos,
-      [selectedLanguage]: fetchRepos,
-    }));
+    this.setState((state) => {
+      return {
+        repos: { ...state.repos, [state.selectedLanguage]: fetchRepos },
+      };
+    });
+    console.log(this.state);
   }
 
   async componentDidUpdate(prevProps, prevState) {
@@ -64,12 +123,11 @@ export default class Popular extends Component {
       console.log("COMPONENT UPDATE");
       // CHECK IF DATA IS IN CACHE
       if (!this.state.repos[this.state.selectedLanguage]) {
-        console.log(this.state);
+        console.log("Fetching Data");
         const fetchRepos = await fetchPopularRepos(this.state.selectedLanguage);
 
-        this.setState(({ repos, selectedLanguage }) => ({
-          ...repos,
-          [selectedLanguage]: fetchRepos,
+        this.setState((state) => ({
+          repos: { ...state.repos, [state.selectedLanguage]: fetchRepos },
         }));
       }
     }
@@ -86,20 +144,7 @@ export default class Popular extends Component {
         />
 
         {repos[selectedLanguage] ? (
-          <div className="grid">
-            {repos.map((repo) => {
-              const { owner } = repo;
-
-              return (
-                <div key={repo.id} className="repo">
-                  <h3>{repo.name}</h3>
-                  <img src={owner.avatar_url} alt={owner.login} />
-                  <p>Score: {repo.score}</p>
-                  <p>owner : {owner.login}</p>
-                </div>
-              );
-            })}
-          </div>
+          <ReposGrid className="grid" repos={repos[selectedLanguage]} />
         ) : (
           <h2>Loading...</h2>
         )}

@@ -3,18 +3,24 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-ul,li{
+#root {
+  width: 100vw;
+}
+ul,
+li {
   list-style-type: none;
 }
+img {
+  max-width: 100%;
+}
 
-body{
+body {
   min-height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 button {
@@ -25,4 +31,21 @@ button {
 .container {
   max-width: 1200px;
   margin: 0 auto;
+}
+.center-text {
+  text-align: center;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1em;
+}
+.repo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.repo ul {
+  margin-top: 1em;
+  font-weight: 600;
 }
