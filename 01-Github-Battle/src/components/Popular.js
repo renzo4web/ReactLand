@@ -36,19 +36,12 @@ const ReposGrid = ({ repos }) => {
   return (
     <ul className="grid">
       {repos.map((repo, i) => {
-        const {
-          id,
-          name,
-          owner,
-          html_url,
-          stargazers_count,
-          forks,
-          open_issues,
-        } = repo;
+        const { id, owner, html_url, stargazers_count, forks, open_issues } =
+          repo;
         const { login, avatar_url } = owner;
 
         return (
-          <li key={id} className="repo">
+          <li key={id} className="repo lg">
             <h4 className={(headerLg, centerText)}>#{i + 1}</h4>
             <img
               src={avatar_url}
@@ -56,7 +49,7 @@ const ReposGrid = ({ repos }) => {
               alt={`Avatar for ${login}`}
             />
             <h2 className="center-text">
-              <a className="link" href={html_url}>
+              <a aria-label={`go to ${login}`} className="link" href={html_url}>
                 {login}
               </a>
             </h2>

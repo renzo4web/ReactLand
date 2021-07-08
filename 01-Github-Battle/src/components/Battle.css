@@ -1,0 +1,34 @@
+.container {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.battle {
+  width: 90%;
+}
+.itr {
+  width: 90%;
+  margin: 0 auto;
+}
+.itr_header {
+  text-align: center;
+}
+.itr_flex {
+  display: flex;
+  justify-content: space-between;
+}
+.itr_icon {
+  background-color: rgba(0, 0, 0, 0.08);
+  padding: 2em;
+}
+.itr_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.itr_box h3 {
+  margin-bottom: 10px;
+}
