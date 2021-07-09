@@ -83,7 +83,8 @@ const PlayerPreview = ({ username, onReset, label }) => {
   return (
     <div className="player_info">
       <h3 className="player_label">Player: {label}</h3>
-      <img
+      <div className="pp_container">
+  <img
         src={`https://github.com/${username}.png?size=200`}
         alt={`Avatar of ${label}`}
       />
@@ -91,7 +92,9 @@ const PlayerPreview = ({ username, onReset, label }) => {
       <button onClick={() => onReset(label)}>
         <FaRegTimesCircle size={25} color="rgb(220,20,60)" />
       </button>
-    </div>
+
+      </div>
+        </div>
   );
 };
 PlayerPreview.propTypes = {
