@@ -4,6 +4,8 @@ import "./Battle.css";
 import { FaUserFriends, FaTrophy, FaRegTimesCircle } from "react-icons/fa";
 import { GiAxeSword } from "react-icons/gi";
 
+import Results from "./Results";
+
 const Intructions = () => {
   return (
     <div className="itr">
@@ -42,13 +44,16 @@ class PlayerInput extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
   handleSubmit(event) {
     event.preventDefault();
     this.props.onSubmit(this.state.username, this.props.label);
   }
+
   handleChange({ target }) {
     this.setState({ username: target.value });
   }
+
   render() {
     return (
       <form className="player" onSubmit={this.handleSubmit}>
@@ -84,19 +89,22 @@ const PlayerPreview = ({ username, onReset, label }) => {
     <div className="player_info">
       <h3 className="player_label">Player: {label}</h3>
       <div className="pp_container">
-  <img
-        src={`https://github.com/${username}.png?size=200`}
-        alt={`Avatar of ${label}`}
-      />
-      <a href={`https://github.com/${username}`}>{username}</a>
-      <button onClick={() => onReset(label)}>
-        <FaRegTimesCircle size={25} color="rgb(220,20,60)" />
-      </button>
-
+        <img
+          className={"avatar-small"}
+          src={`https://github.com/${username}.png?size=200`}
+          alt={`Avatar for ${label}`}
+        />
+        <a className="pp_link" href={`https://github.com/${username}`}>
+          {username}
+        </a>
+        <button title={"Remove Profile"} onClick={() => onReset(label)}>
+          <FaRegTimesCircle size={25} color="rgb(220,20,60)" />
+        </button>
       </div>
-        </div>
+    </div>
   );
 };
+
 PlayerPreview.propTypes = {
   username: PropTypes.string.isRequired,
   onReset: PropTypes.func.isRequired,
@@ -110,6 +118,7 @@ export default class Battle extends Component {
         One: null,
         Two: null,
       },
+      battle: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
@@ -127,9 +136,17 @@ export default class Battle extends Component {
   render() {
     console.log(this.state);
     const { One: playerOne, Two: playerTwo } = this.state.players;
+    const { battle } = this.state;
+
+    if (battle) {
+      return <Results playerOne={playerOne} playerTwo={playerTwo} />;
+    }
+
     return (
       <div className="container">
         <Intructions />
+
+        {/* PLAYER INPUT */}
         <section className="players_container">
           <h2 className="center-text">Players</h2>
           <div className="input_container">
@@ -153,6 +170,15 @@ export default class Battle extends Component {
             )}
           </div>
         </section>
+        {/* BATTLE BUTTON      */}
+        {playerOne && playerTwo && (
+          <button
+            className="btn dark-btn btn-space"
+            onClick={() => this.setState({ battle: true })}
+          >
+            BATTLE
+          </button>
+        )}
       </div>
     );
   }

@@ -11,4 +11,12 @@ const fetchPopularRepos = async (languaje = "") => {
   return response.items;
 };
 
+const fetchUser = async (user) => {
+  const url = window.encodeURI(`https://api.github.com/${user}`);
+  const urlReposUser = window.encodeURI(
+    `https://api.github.com/users/${user}/repos`
+  );
+  const response = await asyncWrapper([fetch(url)]);
+};
+
 export default fetchPopularRepos;
