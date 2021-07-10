@@ -5,18 +5,18 @@ import * as React from 'react'
 
 function UsernameForm({onSubmitUsername}) {
   // 🐨 add a submit event handler here (`handleSubmit`).
-  const [error, setError] = React.useState(null)
-  const usernameInput = React.useRef('')
+  //const [error, setError] = React.useState(null)
+  const [username, setUsername] = React.useState("")
   const handleSubmit = event => {
     event.preventDefault()
     //console.log(event.target.elements[0].value)
-    console.log(usernameInput.current.value)
-    onSubmitUsername(event.target.elements[0].value)
+    onSubmitUsername(username)
     //onSubmitUsername(usernameInput.current.value)
   }
   const handleChange = ({target}) => {
-    const isValid = target.value === target.value.toLowerCase()
-    setError(isValid ? null : 'Username must be lower case')
+    //const isValid = target.value === target.value.toLowerCase()
+    //setError(isValid ? null : 'Username must be lower case')
+    setUsername(target.value.toLowerCase())
   }
   // 💰 Make sure to accept the `event` as an argument and call
   // `event.preventDefault()` to prevent the default behavior of form submit
@@ -35,16 +35,15 @@ function UsernameForm({onSubmitUsername}) {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        {error && <span role="alert">{error}</span>}
         <label htmlFor="username">Username:</label>
         <input
           onChange={handleChange}
-          ref={usernameInput}
           type="text"
           id="username"
+          value={username.toLowerCase()}
         />
       </div>
-      <button disaled={Boolean(error)} type="submit">
+      <button type="submit">
         Submit
       </button>
     </form>
