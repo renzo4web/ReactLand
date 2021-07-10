@@ -1,11 +1,10 @@
 export default async function asyncWrapper(promise) {
-  const [result] = await Promise.allSettled(promise);
-
-  const { value, status, reason } = result;
-
-  if (status === "rejected") {
-    throw new Error(`Not posible to fetch data ${reason}`);
+  const results = await Promise.allSettled(promise);
+  console.log(results);
+  const hasError = results.some((res) => res.status !== "fulfilled");
+  if (hasError) {
+    throw new Error(`Not posible to fetch data`);
   }
 
-  return await value.json();
+  return results;
 }

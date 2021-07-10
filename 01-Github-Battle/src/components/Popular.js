@@ -7,7 +7,7 @@ import {
 } from "react-icons/fa";
 import { navbar, headerLg, centerText } from "./Popular.module.css";
 import PropTypes from "prop-types";
-import fetchPopularRepos from "../utils/api";
+import {fetchPopularRepos} from "../utils/api";
 
 const LanguajesNav = ({ selected, onUpdateLanguaje }) => {
   const langs = ["All", "Javascript", "Ruby", "Java", "CSS", "Python"];
