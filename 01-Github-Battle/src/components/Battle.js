@@ -133,13 +133,22 @@ export default class Battle extends Component {
       players: { ...state.players, [label]: null },
     }));
   }
+  handleResetBattle() {
+    this.setState({ battle: false });
+  }
   render() {
     console.log(this.state);
     const { One: playerOne, Two: playerTwo } = this.state.players;
     const { battle } = this.state;
 
     if (battle) {
-      return <Results playerOne={playerOne} playerTwo={playerTwo} />;
+      return (
+        <Results
+          playerOne={playerOne}
+          playerTwo={playerTwo}
+          onResetBattle={this.handleResetBattle}
+        />
+      );
     }
 
     return (

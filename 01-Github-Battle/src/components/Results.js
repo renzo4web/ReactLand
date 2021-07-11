@@ -1,4 +1,5 @@
 import React from "react";
+import "./Results.css";
 import {
   FaUserAlt,
   FaCompass,
@@ -10,13 +11,23 @@ import {
 
 import { fetchUser } from "../utils/api";
 
-const Player = (data) => {
-  const { public_repos,avatar_url, login, name, followers, following, company } = data;
+const Player = ({ data, result }) => {
+  const {
+    public_repos,
+    avatar_url,
+    login,
+    name,
+    followers,
+    following,
+    company,
+    location,
+    score,
+  } = data;
   return (
     <div>
-      <h4>WINNER</h4>
+      <h4>{result}</h4>
       <img src={avatar_url} alt={"Avatar of " + login} />
-      <span>SCORE</span>
+      <span>Score: {score}</span>
 
       <h2>{login}</h2>
       <ul>
@@ -27,7 +38,7 @@ const Player = (data) => {
 
         <li title={login + "Location"}>
           <FaCompass />
-          {name}
+          {location}
         </li>
 
         <li>
@@ -58,26 +69,42 @@ export default class Results extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playerOne: null,
-      playerTwo: null,
+      winner: null,
+      loser: null,
+      error: null,
+      loading: true,
     };
-    this.fetchUsers();
   }
-  async fetchUsers() {
+  async componentDidMount() {
     const players = await fetchUser(this.props.playerOne, this.props.playerTwo);
-    console.log(players);
-    const [playerOne, playerTwo] = players;
+    if (!players) {
+      this.setState({ error: true, loading: false });
+      return;
+    }
+
+    const [playerWin, playerLose] = players;
     this.setState({
-      playerOne: playerOne,
-      playerTwo: playerTwo,
+      loading: false,
+      winner: playerWin,
+      loser: playerLose,
     });
   }
   render() {
+    const { loading, winner, loser, error } = this.state;
+    if (loading) {
+      return <div>Loading</div>;
+    }
+    if (error) {
+      return <div>The Robot HAS PROBLEMS PLEASE TRY AGAIN</div>;
+    }
     return (
-      <div>
-        <Player data={this.state.playerOne} />
-        <Player data={this.state.playerTwo} />
-      </div>
+      <>
+        <div className="results_container">
+          <Player data={winner} result={"winner"} />
+          <Player data={loser} result={"loser"} />
+        </div>
+        {!error && <button onClick={this.props.onResetBattle}>RESET</button>}
+      </>
     );
   }
 }

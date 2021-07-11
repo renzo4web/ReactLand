@@ -1,0 +1,4 @@
+.results_container{
+  display:flex;
+  flex-wrap:wrap;
+}
