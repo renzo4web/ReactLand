@@ -4,10 +4,16 @@ const fetchPopularRepos = async (languaje = "") => {
   const url = window.encodeURI(
     `https://api.github.com/search/repositories?q=stars:>1+language:${languaje}&sort=stars&order=desc&type=Repositories`
   );
-
-  const response = await asyncWrapper([fetch(url)]);
-
-  return response.items;
+  try {
+    const response = await fetch(url);
+    if (response.message) {
+      return [];
+    }
+    return response.items;
+  } catch (err) {
+    console.warn(err);
+    return "";
+  }
 };
 const getScore = async (user, followers) => {
   const url = window.encodeURI(`https://api.github.com/users/${user}/repos`);

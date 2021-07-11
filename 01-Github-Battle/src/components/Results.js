@@ -75,6 +75,7 @@ export default class Results extends React.Component {
       loading: true,
     };
   }
+
   async componentDidMount() {
     const players = await fetchUser(this.props.playerOne, this.props.playerTwo);
     if (!players) {
