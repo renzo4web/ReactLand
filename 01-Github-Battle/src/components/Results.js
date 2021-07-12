@@ -1,5 +1,6 @@
 import React from "react";
 import "./Results.css";
+import Loading from "./Loading";
 import {
   FaUserAlt,
   FaCompass,
@@ -11,7 +12,7 @@ import {
 
 import { fetchUser } from "../utils/api";
 
-const Player = ({ data, result }) => {
+const Player = ({ data, result, isTie }) => {
   const {
     public_repos,
     avatar_url,
@@ -24,41 +25,42 @@ const Player = ({ data, result }) => {
     score,
   } = data;
   return (
-    <div>
-      <h4>{result}</h4>
+    <div className="repo lg">
+      <h4>{isTie ? "Tie" : result}</h4>
       <img src={avatar_url} alt={"Avatar of " + login} />
-      <span>Score: {score}</span>
+      <span className="score">Score: {score.toLocaleString()}</span>
 
       <h2>{login}</h2>
-      <ul>
+      <ul className="list">
         <li>
-          <FaUserAlt />
+          <FaUserAlt size={22} color="rgb(239,115,115)" />
           {name}
         </li>
 
-        <li title={login + "Location"}>
-          <FaCompass />
-          {location}
-        </li>
-
+        {location && (
+          <li>
+            <FaCompass size={22} color="rgb(144,115,255)" />
+            {location}
+          </li>
+        )}
         <li>
-          <FaUsers />
-          Followers {followers}
+          <FaUsers size={22} color="rgb(129,195,245)" />
+          {followers.toLocaleString()} Followers
         </li>
         {company && (
           <li>
-            <FaSuitcase />
+            <FaSuitcase size={22} color="#795548" />
             {company}
           </li>
         )}
         <li>
-          <FaUserFriends />
-          Following {following}
+          <FaUserFriends color="rgb(64,183,95)" size={22} />
+          {following.toLocaleString()} Following
         </li>
 
         <li>
           <FaGitAlt />
-          {public_repos}
+          {public_repos} repositories
         </li>
       </ul>
     </div>
@@ -73,6 +75,7 @@ export default class Results extends React.Component {
       loser: null,
       error: null,
       loading: true,
+      tie: false,
     };
   }
 
@@ -88,12 +91,13 @@ export default class Results extends React.Component {
       loading: false,
       winner: playerWin,
       loser: playerLose,
+      tie: playerWin.score === playerLose.score,
     });
   }
   render() {
-    const { loading, winner, loser, error } = this.state;
+    const { loading, winner, loser, error, tie } = this.state;
     if (loading) {
-      return <div>Loading</div>;
+      return <Loading />;
     }
     if (error) {
       return <div>The Robot HAS PROBLEMS PLEASE TRY AGAIN</div>;
@@ -101,10 +105,14 @@ export default class Results extends React.Component {
     return (
       <>
         <div className="results_container">
-          <Player data={winner} result={"winner"} />
-          <Player data={loser} result={"loser"} />
+          <Player data={winner} result={"winner"} isTie={tie} />
+          <Player data={loser} result={"loser"} isTie={tie} />
         </div>
-        {!error && <button onClick={this.props.onResetBattle}>RESET</button>}
+        {!error && (
+          <button className="btn dark-btn" onClick={this.props.onResetBattle}>
+            RESET
+          </button>
+        )}
       </>
     );
   }

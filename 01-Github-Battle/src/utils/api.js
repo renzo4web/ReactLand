@@ -6,10 +6,12 @@ const fetchPopularRepos = async (languaje = "") => {
   );
   try {
     const response = await fetch(url);
-    if (response.message) {
+    const json = await response.json();
+    console.log(json);
+    if (json.message) {
       return [];
     }
-    return response.items;
+    return json.items;
   } catch (err) {
     console.warn(err);
     return "";

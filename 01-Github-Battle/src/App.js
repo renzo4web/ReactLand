@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import Battle from "./components/Battle";
 
-// import Popular from "./components/Popular";
+import Popular from "./components/Popular";
 
 export default class App extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ export default class App extends Component {
     return (
       <div className="container">
         {/* <Popular /> */}
-        <Battle />
+        <Popular />
       </div>
     );
   }

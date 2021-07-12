@@ -7,7 +7,10 @@ import {
 } from "react-icons/fa";
 import { navbar, headerLg, centerText } from "./Popular.module.css";
 import PropTypes from "prop-types";
-import {fetchPopularRepos} from "../utils/api";
+import { fetchPopularRepos } from "../utils/api";
+
+import Loading from "./Loading";
+import Tooltip from "./Tooltip";
 
 const LanguajesNav = ({ selected, onUpdateLanguaje }) => {
   const langs = ["All", "Javascript", "Ruby", "Java", "CSS", "Python"];
@@ -55,8 +58,10 @@ const ReposGrid = ({ repos }) => {
             </h2>
             <ul>
               <li>
-                <FaUser color="rgb(255,191,116)" size={22} />
-                <a href={`https://github.com/${login}`}>{login}</a>
+                <Tooltip text="TEST">
+                  <FaUser color="rgb(255,191,116)" size={22} />
+                  <a href={`https://github.com/${login}`}>{login}</a>
+                </Tooltip>
               </li>
               <li>
                 <FaStar color="rgb(255,215,0)" size={22} />
@@ -135,12 +140,13 @@ export default class Popular extends Component {
           selected={selectedLanguage}
           onUpdateLanguaje={this.updateLang}
         />
-
-        {repos[selectedLanguage] ? (
-          <ReposGrid className="grid" repos={repos[selectedLanguage]} />
-        ) : (
-          <h2>Loading...</h2>
-        )}
+        <div className="main">
+          {repos[selectedLanguage] ? (
+            <ReposGrid className="grid" repos={repos[selectedLanguage]} />
+          ) : (
+            <Loading text="Fetching Repos" speed={300} />
+          )}
+        </div>
       </>
     );
   }

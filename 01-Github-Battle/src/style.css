@@ -40,12 +40,16 @@ button {
 .center-text {
   text-align: center;
 }
+.main{
+  width:100%;
+  flex-grow:2;
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1em;
   width: 90%;
-  margin: 0 auto;
+  margin: 4em auto;
 }
 .repo {
   display: flex;
@@ -78,6 +82,8 @@ button {
 .repo ul {
   margin-top: 0.5em;
   font-weight: 600;
+  display:flex;
+  flex-direction:column;
 }
 .repo ul li {
   display: inline-flex;

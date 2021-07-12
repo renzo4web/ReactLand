@@ -122,6 +122,7 @@ export default class Battle extends Component {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
+    this.handleResetBattle = this.handleResetBattle.bind(this);
   }
   handleSubmit(username, label) {
     this.setState((state) => ({
@@ -134,7 +135,13 @@ export default class Battle extends Component {
     }));
   }
   handleResetBattle() {
-    this.setState({ battle: false });
+    this.setState({
+      players: {
+        One: null,
+        Two: null,
+      },
+      battle: false,
+    });
   }
   render() {
     console.log(this.state);
