@@ -31,7 +31,11 @@ button {
   border: none;
   background-color: none;
 }
-
+.dark {
+  background-color: #1c2022;
+  color: #dadada;
+  min-height: 100%;
+}
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -40,9 +44,9 @@ button {
 .center-text {
   text-align: center;
 }
-.main{
-  width:100%;
-  flex-grow:2;
+.main {
+  width: 100%;
+  flex-grow: 2;
 }
 .grid {
   display: grid;
@@ -61,6 +65,9 @@ button {
 }
 .repo.lg {
   background-color: #e2e2e2;
+}
+.repo.dark{
+  background-color: rgb(36, 40, 42);
 }
 .repo a {
   text-decoration: none;
@@ -82,13 +89,14 @@ button {
 .repo ul {
   margin-top: 0.5em;
   font-weight: 600;
-  display:flex;
-  flex-direction:column;
+  display: flex;
+  flex-direction: column;
 }
 .repo ul li {
   display: inline-flex;
   align-items: center;
   margin: 10px 0;
+  color:inherit
 }
 .repo ul li svg {
   margin-right: 10px;

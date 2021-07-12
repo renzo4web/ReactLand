@@ -11,6 +11,7 @@ import { fetchPopularRepos } from "../utils/api";
 
 import Loading from "./Loading";
 import Tooltip from "./Tooltip";
+import {ThemeConsumer} from "../contexts/theme"
 
 const LanguajesNav = ({ selected, onUpdateLanguaje }) => {
   const langs = ["All", "Javascript", "Ruby", "Java", "CSS", "Python"];
@@ -35,7 +36,7 @@ LanguajesNav.propTypes = {
   selected: PropTypes.string.isRequired,
   onUpdateLanguaje: PropTypes.func.isRequired,
 };
-const ReposGrid = ({ repos }) => {
+const ReposGrid = ({ repos, theme }) => {
   return (
     <ul className="grid">
       {repos.map((repo, i) => {
@@ -44,7 +45,7 @@ const ReposGrid = ({ repos }) => {
         const { login, avatar_url } = owner;
 
         return (
-          <li key={id} className="repo lg">
+          <li key={id} className={theme === "light" ? "repo lg" : "repo dark"}>
             <h4 className={(headerLg, centerText)}>#{i + 1}</h4>
             <img
               src={avatar_url}
@@ -58,14 +59,16 @@ const ReposGrid = ({ repos }) => {
             </h2>
             <ul>
               <li>
-                <Tooltip text="TEST">
+                <Tooltip text={"Repo of " + login}>
                   <FaUser color="rgb(255,191,116)" size={22} />
                   <a href={`https://github.com/${login}`}>{login}</a>
                 </Tooltip>
               </li>
               <li>
-                <FaStar color="rgb(255,215,0)" size={22} />
-                {stargazers_count.toLocaleString()} stars
+                <Tooltip text={"User stars"}>
+                  <FaStar color="rgb(255,215,0)" size={22} />
+                  {stargazers_count.toLocaleString()} stars
+                </Tooltip>
               </li>
               <li>
                 <FaCodeBranch color="rgb(129,195,245)" size={22} />
@@ -142,7 +145,15 @@ export default class Popular extends Component {
         />
         <div className="main">
           {repos[selectedLanguage] ? (
-            <ReposGrid className="grid" repos={repos[selectedLanguage]} />
+            <ThemeConsumer>
+              {({ theme }) => (
+                <ReposGrid
+                  className="grid"
+                  theme={theme}
+                  repos={repos[selectedLanguage]}
+                />
+              )}
+            </ThemeConsumer>
           ) : (
             <Loading text="Fetching Repos" speed={300} />
           )}
