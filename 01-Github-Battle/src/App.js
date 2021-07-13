@@ -1,11 +1,10 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Battle from "./components/Battle";
-import Nav from "./components/Nav"
+import Nav from "./components/Nav";
 import Popular from "./components/Popular";
 import { ThemeProvider } from "./contexts/theme";
-
-
 
 export default class App extends Component {
   constructor(props) {
@@ -22,16 +21,18 @@ export default class App extends Component {
 
   render() {
     return (
-      <ThemeProvider value={this.state}>
-        <div className={this.state.theme}>
-
-        <div className="container">
-          {/* <Popular /> */}
-          <Nav />
-          <Popular />
-        </div>
-        </div>
-      </ThemeProvider>
+      <Router>
+        <ThemeProvider value={this.state}>
+          <div className={this.state.theme}>
+            <div className="container">
+              {/* <Popular /> */}
+              <Nav />
+              <Route exact path="/" component={Popular} />
+              <Route path="/battle" component={Battle} />
+            </div>
+          </div>
+        </ThemeProvider>
+      </Router>
     );
   }
 }
