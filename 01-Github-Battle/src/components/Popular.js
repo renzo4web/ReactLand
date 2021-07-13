@@ -22,7 +22,7 @@ const LanguajesNav = ({ selected, onUpdateLanguaje }) => {
         <li key={lang}>
           <button
             onClick={() => onUpdateLanguaje(lang)}
-            style={lang === selected ? { color: "red" } : null}
+            style={lang === selected ? { color: "rgb(187,46,31)" } : null}
           >
             {lang}
           </button>

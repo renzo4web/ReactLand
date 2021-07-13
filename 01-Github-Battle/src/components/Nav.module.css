@@ -1,0 +1,29 @@
+.nav {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin:2em 0;
+  color:inherit;
+}
+.nav ul{
+  display: flex;
+
+}
+.nav ul li a{
+  font-size: 1.25rem;
+  font-weight:600;
+  text-decoration:none;
+  margin:0 1em;
+  color:inherit;
+}
+.nav ul li a.active {
+  color:rgb(187,46,31);
+  text-decoration:underline;
+}
+.btnTheme{
+  cursor: pointer;
+  background-color:transparent;
+  font-size:2rem;
+}

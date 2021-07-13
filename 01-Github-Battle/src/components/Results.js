@@ -11,6 +11,11 @@ import {
 } from "react-icons/fa";
 
 import { fetchUser } from "../utils/api";
+import {ThemeConsumer} from "../contexts/theme";
+import queryString from "query-string";
+import {Link} from "react-router-dom"
+
+
 
 const Player = ({ data, result, isTie }) => {
   const {
@@ -25,7 +30,9 @@ const Player = ({ data, result, isTie }) => {
     score,
   } = data;
   return (
-    <div className="repo lg">
+    <ThemeConsumer>
+      {({theme})=>(
+        <div className={theme === "light" ? "repo lg":"repo dark"}>
       <h4>{isTie ? "Tie" : result}</h4>
       <img src={avatar_url} alt={"Avatar of " + login} />
       <span className="score">Score: {score.toLocaleString()}</span>
@@ -64,6 +71,10 @@ const Player = ({ data, result, isTie }) => {
         </li>
       </ul>
     </div>
+
+      )}
+    </ThemeConsumer>
+    
   );
 };
 
@@ -80,12 +91,12 @@ export default class Results extends React.Component {
   }
 
   async componentDidMount() {
-    const players = await fetchUser(this.props.playerOne, this.props.playerTwo);
+    const {playerOne,playerTwo}= queryString.parse(this.props.location.search)
+    const players = await fetchUser(playerOne,playerTwo);
     if (!players) {
       this.setState({ error: true, loading: false });
       return;
     }
-
     const [playerWin, playerLose] = players;
     this.setState({
       loading: false,
@@ -97,7 +108,7 @@ export default class Results extends React.Component {
   render() {
     const { loading, winner, loser, error, tie } = this.state;
     if (loading) {
-      return <Loading />;
+      return <Loading text="Battling"/>;
     }
     if (error) {
       return <div>The Robot HAS PROBLEMS PLEASE TRY AGAIN</div>;
@@ -109,9 +120,9 @@ export default class Results extends React.Component {
           <Player data={loser} result={"loser"} isTie={tie} />
         </div>
         {!error && (
-          <button className="btn dark-btn" onClick={this.props.onResetBattle}>
+          <Link to="/battle"className="btn dark-btn" >
             RESET
-          </button>
+          </Link>
         )}
       </>
     );

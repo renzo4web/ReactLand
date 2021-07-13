@@ -1,6 +1,9 @@
 import React from "react";
 import { ThemeConsumer } from "../contexts/theme";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+
+import { nav, active ,btnTheme} from "./Nav.module.css";
+
 export default class Nav extends React.Component {
   constructor(props) {
     super(props);
@@ -10,16 +13,20 @@ export default class Nav extends React.Component {
     return (
       <ThemeConsumer>
         {({ theme, toggleTheme }) => (
-          <nav>
+          <nav className={nav}>
             <ul>
               <li>
-                <Link to="/battle">Battle</Link>
+                <NavLink exact activeClassName={active} to="/">
+                  Popular
+                </NavLink>
               </li>
               <li>
-                <Link to="/">Popular</Link>
+                <NavLink activeClassName={active} to="/battle">
+                  Battle
+                </NavLink>
               </li>
             </ul>
-            <button onClick={toggleTheme}>
+            <button className={btnTheme} onClick={toggleTheme}>
               {theme === "light" ? "🔦" : "💡"}
             </button>
           </nav>

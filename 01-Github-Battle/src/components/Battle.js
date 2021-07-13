@@ -1,4 +1,6 @@
+
 import React, { Component } from "react";
+import {Link,useRouteMatch} from "react-router-dom"
 import PropTypes from "prop-types";
 import "./Battle.css";
 import { FaUserFriends, FaTrophy, FaRegTimesCircle } from "react-icons/fa";
@@ -108,7 +110,7 @@ const PlayerPreview = ({ username, onReset, label }) => {
 PlayerPreview.propTypes = {
   username: PropTypes.string.isRequired,
   onReset: PropTypes.func.isRequired,
-  labe: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
 };
 export default class Battle extends Component {
   constructor(props) {
@@ -118,11 +120,9 @@ export default class Battle extends Component {
         One: null,
         Two: null,
       },
-      battle: false,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleReset = this.handleReset.bind(this);
-    this.handleResetBattle = this.handleResetBattle.bind(this);
   }
   handleSubmit(username, label) {
     this.setState((state) => ({
@@ -134,29 +134,11 @@ export default class Battle extends Component {
       players: { ...state.players, [label]: null },
     }));
   }
-  handleResetBattle() {
-    this.setState({
-      players: {
-        One: null,
-        Two: null,
-      },
-      battle: false,
-    });
-  }
   render() {
     console.log(this.state);
     const { One: playerOne, Two: playerTwo } = this.state.players;
-    const { battle } = this.state;
 
-    if (battle) {
-      return (
-        <Results
-          playerOne={playerOne}
-          playerTwo={playerTwo}
-          onResetBattle={this.handleResetBattle}
-        />
-      );
-    }
+
 
     return (
       <div className="container">
@@ -188,12 +170,15 @@ export default class Battle extends Component {
         </section>
         {/* BATTLE BUTTON      */}
         {playerOne && playerTwo && (
-          <button
+          <Link
+            to={{
+              pathname: "/battle/results",
+              search:"?playerOne="+playerOne+"&playerTwo="+playerTwo
+            }}
             className="btn dark-btn btn-space"
-            onClick={() => this.setState({ battle: true })}
           >
             BATTLE
-          </button>
+          </Link>
         )}
       </div>
     );
