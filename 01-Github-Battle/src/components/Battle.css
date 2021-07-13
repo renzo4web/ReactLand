@@ -63,6 +63,11 @@
 }
 .input_control .input-light {
   background-color: rgba(0, 0, 0, 0.02);
+
+}
+.input-dark {
+  color:#dadada;
+  background-color:rgba(0, 0, 0, 0.03)
 }
 .player_input button {
   cursor: pointer;

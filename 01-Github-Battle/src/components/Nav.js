@@ -11,7 +11,9 @@ export default class Nav extends React.Component {
       <ThemeConsumer>
         {({ theme, toggleTheme }) => (
           <nav>
-            <button onClick={toggleTheme}>{theme}</button>
+            <button onClick={toggleTheme}>
+              {theme === "light" ? "🔦" : "💡"}
+            </button>
           </nav>
         )}
       </ThemeConsumer>
