@@ -31,6 +31,10 @@ button {
   border: none;
   background-color: none;
 }
+.light{
+      min-height: 100%;
+    width: 100%;
+}
 .dark {
   background-color: #1c2022;
   color: #dadada;

@@ -2,13 +2,9 @@ import React from "react";
 import { ThemeConsumer } from "../contexts/theme";
 import { NavLink } from "react-router-dom";
 
-import { nav, active ,btnTheme} from "./Nav.module.css";
+import { nav, active, btnTheme } from "./Nav.module.css";
 
 export default class Nav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state;
-  }
   render() {
     return (
       <ThemeConsumer>

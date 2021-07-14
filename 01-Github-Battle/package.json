@@ -23,9 +23,11 @@
   "homepage": "https://github.com/isandeepbansal/react-starter-kit#readme",
   "devDependencies": {
     "@babel/core": "^7.14.6",
+    "@babel/eslint-parser": "^7.14.7",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
     "@babel/preset-react": "^7.14.5",
     "autoprefixer": "^10.2.6",
-    "eslint": "^7.29.0",
+    "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jsx-a11y": "^6.4.1",
@@ -44,6 +46,6 @@
     "react-router-dom": "^5.2.0"
   },
   "browserslist": [
-    "last 2 Chrome versions"
+    "defaults"
   ]
 }

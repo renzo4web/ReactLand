@@ -5,13 +5,13 @@ import {
   FaCodeBranch,
   FaExclamationTriangle,
 } from "react-icons/fa";
-import { navbar, headerLg, centerText } from "./Popular.module.css";
+import { navbar, headerLg } from "./Popular.module.css";
 import PropTypes from "prop-types";
 import { fetchPopularRepos } from "../utils/api";
 
 import Loading from "./Loading";
 import Tooltip from "./Tooltip";
-import {ThemeConsumer} from "../contexts/theme"
+import { ThemeConsumer } from "../contexts/theme";
 
 const LanguajesNav = ({ selected, onUpdateLanguaje }) => {
   const langs = ["All", "Javascript", "Ruby", "Java", "CSS", "Python"];
@@ -46,7 +46,7 @@ const ReposGrid = ({ repos, theme }) => {
 
         return (
           <li key={id} className={theme === "light" ? "repo lg" : "repo dark"}>
-            <h4 className={(headerLg, centerText)}>#{i + 1}</h4>
+            <h4 className={headerLg}>#{i + 1}</h4>
             <img
               src={avatar_url}
               className="avatar"
@@ -87,26 +87,20 @@ const ReposGrid = ({ repos, theme }) => {
 };
 
 export default class Popular extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedLanguage: "All",
-      repos: {
-        All: null,
-        Javascript: null,
-        Ruby: null,
-        Java: null,
-        CSS: null,
-        Python: null,
-      },
-    };
-
-    this.updateLang = this.updateLang.bind(this);
-  }
-
-  updateLang(selectedLanguage) {
+  state = {
+    selectedLanguage: "All",
+    repos: {
+      All: null,
+      Javascript: null,
+      Ruby: null,
+      Java: null,
+      CSS: null,
+      Python: null,
+    },
+  };
+  updateLang = (selectedLanguage) => {
     this.setState({ selectedLanguage });
-  }
+  };
 
   async componentDidMount() {
     const fetchRepos = await fetchPopularRepos();

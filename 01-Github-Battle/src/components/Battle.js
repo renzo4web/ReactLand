@@ -1,12 +1,9 @@
-
 import React, { Component } from "react";
-import {Link,useRouteMatch} from "react-router-dom"
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import "./Battle.css";
 import { FaUserFriends, FaTrophy, FaRegTimesCircle } from "react-icons/fa";
 import { GiAxeSword } from "react-icons/gi";
-
-import Results from "./Results";
 
 const Intructions = () => {
   return (
@@ -38,23 +35,17 @@ const Intructions = () => {
   );
 };
 class PlayerInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      username: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
+  state = {
+    username: "",
+  };
+  handleSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit(this.state.username, this.props.label);
-  }
+  };
 
-  handleChange({ target }) {
+  handleChange = ({ target }) => {
     this.setState({ username: target.value });
-  }
+  };
 
   render() {
     return (
@@ -113,32 +104,25 @@ PlayerPreview.propTypes = {
   label: PropTypes.string.isRequired,
 };
 export default class Battle extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      players: {
-        One: null,
-        Two: null,
-      },
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleReset = this.handleReset.bind(this);
-  }
-  handleSubmit(username, label) {
+  state = {
+    players: {
+      One: null,
+      Two: null,
+    },
+  };
+
+  handleSubmit = (username, label) => {
     this.setState((state) => ({
       players: { ...state.players, [label]: username },
     }));
-  }
-  handleReset(label) {
+  };
+  handleReset = (label) => {
     this.setState((state) => ({
       players: { ...state.players, [label]: null },
     }));
-  }
+  };
   render() {
-    console.log(this.state);
     const { One: playerOne, Two: playerTwo } = this.state.players;
-
-
 
     return (
       <div className="container">
@@ -173,7 +157,7 @@ export default class Battle extends Component {
           <Link
             to={{
               pathname: "/battle/results",
-              search:"?playerOne="+playerOne+"&playerTwo="+playerTwo
+              search: "?playerOne=" + playerOne + "&playerTwo=" + playerTwo,
             }}
             className="btn dark-btn btn-space"
           >

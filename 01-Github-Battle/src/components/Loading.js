@@ -11,15 +11,12 @@ const style = {
 };
 
 export default class Loading extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      content: this.props.text,
-    };
-  }
+  state = {
+    content: this.props.text,
+  };
+
   componentDidMount() {
     this.timer = setInterval(() => {
-      console.log("INTERVAl");
       this.state.content === `${this.props.text}...`
         ? this.setState({ content: this.props.text })
         : this.setState(({ content }) => ({ content: content + "." }));
