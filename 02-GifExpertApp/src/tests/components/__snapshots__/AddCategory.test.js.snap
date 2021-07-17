@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test <AddCategory /> snapshot test 1`] = `
+<form
+  className="m-4 flex items-center flex-wrap md:flex-row "
+  onSubmit={[Function]}
+>
+  <input
+    className=" w-full md:w-60 transition transform duration-500 ease-in-out  rounded p-3 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:scale-110"
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <button
+    aria-label="add category"
+    className="w-full rounded p-2 md:w-20 md:h-full md:ml-4 uppercase bg-purple-600 text-white transition hover:bg-purple-500 hover:scale-110"
+    type="submit"
+  >
+    search
+  </button>
+</form>
+`;

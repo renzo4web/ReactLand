@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GifGridItem test should render a gif 1`] = `
+<li
+  className="hover:z-10"
+>
+  <img
+    alt="title"
+    className="transform transition-transform ease-in rounded-md hover:scale-125 "
+    src="https://www.example.com"
+  />
+</li>
+`;

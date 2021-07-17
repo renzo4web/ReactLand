@@ -2,10 +2,8 @@ import { useState } from "react";
 import AddCategory from "./components/AddCategory";
 import GifGrid from "./components/GifGrid";
 
-const GifExpertApp = () => {
-  const [categories, setCategories] = useState([]);
-
-  const handleAdd = () => setCategories((cat) => [...cat, "hunter"]);
+const GifExpertApp = ({ defaultCategories = [] }) => {
+  const [categories, setCategories] = useState(defaultCategories);
 
   return (
     <div className="font-display bg-gray-200 container-lg flex flex-col items-center	min-h-screen">
@@ -16,8 +14,6 @@ const GifExpertApp = () => {
           <GifGrid key={cats} category={cats} />
         ))}
       </ul>
-      <hr />
-      <button onClick={handleAdd}>Add</button>
     </div>
   );
 };

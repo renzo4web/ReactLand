@@ -7,6 +7,8 @@ const AddCategory = ({ setCategories }) => {
   const handleChange = ({ target }) => {
     const { value } = target;
     setInputVal(value.trim());
+
+    console.log("calling handleChange");
   };
 
   const handleSubmit = (event) => {
@@ -14,6 +16,7 @@ const AddCategory = ({ setCategories }) => {
     if (!inputVal.trim().length) return;
     setCategories((prevCats) => [inputVal, ...prevCats]);
     setInputVal("");
+    console.log("calling handleSubmit");
   };
 
   return (

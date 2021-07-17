@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test main <GifExpertApp /> should render the component  1`] = `
+<div
+  className="font-display bg-gray-200 container-lg flex flex-col items-center	min-h-screen"
+>
+  <h1
+    className="text-center text-5xl font-bold my-4"
+  >
+    Gift Experts
+  </h1>
+  <AddCategory
+    setCategories={[Function]}
+  />
+  <ul
+    className="w-full"
+  />
+</div>
+`;

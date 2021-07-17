@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-const GifGridItem = ({ category, id, url, title }) => {
+const GifGridItem = ({ url, title }) => {
   return (
     <li className="hover:z-10">
       <img
@@ -11,5 +12,8 @@ const GifGridItem = ({ category, id, url, title }) => {
     </li>
   );
 };
-
+GifGridItem.propTypes = {
+  url: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+};
 export default GifGridItem;
