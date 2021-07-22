@@ -13,7 +13,7 @@ export const FormWithCustomHook = () => {
   const { name, password, email } = inputs;
 
   return (
-    <div>
+    <div className="bg-light p-3">
       <h1>Form With custom Hook</h1>
       <form>
         <input onChange={handleChange} type="text" name="name" value={name} />

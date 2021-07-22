@@ -6,7 +6,7 @@ const CounterApp = () => {
     counter2: 20,
   });
   return (
-    <div>
+    <div className="bg-light p-3">
       <h2 className="text-center">Counter {counter1}</h2>
       <h2 className="text-center">Counter {counter2}</h2>
       <button

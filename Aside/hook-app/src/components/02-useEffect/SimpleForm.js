@@ -26,7 +26,7 @@ export const SimpleForm = () => {
   };
 
   return (
-    <div>
+    <div className="bg-light p-3">
       <h1>SimpleForm</h1>
       <form onSubmit={handleSubmit}>
         <input onChange={handleChange} type="text" name="name" value={name} />

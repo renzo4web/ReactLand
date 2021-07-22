@@ -1,26 +1,45 @@
-import React, { useEffect, useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
+import { useCounter } from "../../hooks/useCounter";
 
 const MultipleCustomHooks = () => {
-  const [id, setId] = useState(1);
-  const url = `https://www.breakingbadapi.com/api/quotes/${id}`;
-  const [data, setEndpoint] = useFetch(url);
-  const { loading, text, error } = data;
-  console.log(data);
+  const { state, increment, decrement } = useCounter(1);
+
+  const url = `https://www.breakingbadapi.com/api/quotes/${state}`;
+
+  const data = useFetch(url);
+  const { loading, text } = data;
+
   return (
-    <div>
+    <div className="bg-light p-3">
       {loading ? (
-        <h4>Loading</h4>
+        <h4 className="alert alert-info">Loading</h4>
       ) : (
         <article>
           <h4>{text.series}</h4>
-          <p>{text.quote}</p>
+          <blockquote className="blockquote">
+            <strong>{text.quote}</strong>
+
+            <footer className="blockquote-footer mt-2">
+              Author: {text.author}
+            </footer>
+            <cite></cite>
+          </blockquote>
+
           <button
+            disabled={loading || state <= 1}
+            className="btn btn-secondary"
             onClick={() => {
-              setId((prev) => prev + 1);
-              console.log(id);
-              console.log(url);
-              setEndpoint(url);
+              decrement();
+            }}
+          >
+            Prev quote
+          </button>
+
+          <button
+            disabled={loading}
+            className="btn btn-primary"
+            onClick={() => {
+              increment();
             }}
           >
             Next quote
