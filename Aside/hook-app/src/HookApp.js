@@ -11,32 +11,41 @@ import MemoHook from "./components/06-memos/MemoHook";
 import { Memorize } from "./components/06-memos/Memorize";
 import { Padre } from "./components/07-tarea-memo/Padre";
 import TodoApp from "./components/08-useReducer/TodoApp";
+import MainApp from "./components/09-useContext/MainApp";
 
 const HookApp = () => {
   return (
     <div className="container">
       <h1 className="display-1">Hooks App</h1>
       <div className="my-4 border border-primary border-3 p-3 bg-light rounded-3 bg-dark">
-        <h2 className="text-left text-info fw-bold mt-2">useState</h2>
+        <h2 className="text-left text-info fw-bold mt-2">
+          useState
+        </h2>
         <CounterApp />
         <hr className="my-4" />
         <CounterWithCustomHook />
       </div>
 
       <div className="my-4 border border-primary border-3 p-3 bg-light rounded-3 bg-dark">
-        <h2 className="text-left text-info fw-bold mt-2">useEffect</h2>
+        <h2 className="text-left text-info fw-bold mt-2">
+          useEffect
+        </h2>
         <SimpleForm />
         <hr className="my-4" />
         <FormWithCustomHook />
       </div>
 
       <div className="my-4 border border-primary border-3 p-3 bg-dark rounded-3">
-        <h2 className="text-left text-info fw-bold mt-2">Examples</h2>
+        <h2 className="text-left text-info fw-bold mt-2">
+          Examples
+        </h2>
         <MultipleCustomHooks />
       </div>
 
       <div className="my-4 border border-primary border-3 p-3 bg-light rounded-3 bg-dark">
-        <h2 className="text-right text-info fw-bold mt-2">useRef</h2>
+        <h2 className="text-right text-info fw-bold mt-2">
+          useRef
+        </h2>
         <FocusScreen />
 
         <hr className="my-4" />
@@ -44,10 +53,14 @@ const HookApp = () => {
       </div>
 
       <div className="my-4 border border-primary border-3 p-3 bg-light rounded-3 bg-dark">
-        <h2 className="text-right text-info fw-bold mt-2">useLayoutEffect</h2>
+        <h2 className="text-right text-info fw-bold mt-2">
+          useLayoutEffect
+        </h2>
       </div>
       <div className="my-4 border border-primary border-3 p-3 bg-light rounded-3 bg-dark">
-        <h2 className="text-right text-info fw-bold mt-2">useMemo</h2>
+        <h2 className="text-right text-info fw-bold mt-2">
+          useMemo
+        </h2>
         <Memorize />
 
         <hr className="my-4" />
@@ -59,8 +72,16 @@ const HookApp = () => {
         <Padre />
       </div>
       <div className="my-4 border border-primary border-3 p-3 bg-light rounded-3 bg-dark">
-        <h2 className="text-right text-info fw-bold mt-2">useReducer</h2>
+        <h2 className="text-right text-info fw-bold mt-2">
+          useReducer
+        </h2>
         <TodoApp />
+      </div>
+      <div className="my-4 border border-primary border-3 p-3 bg-light rounded-3 bg-dark">
+        <h2 className="text-right text-info fw-bold mt-2">
+          useContext
+        </h2>
+        <MainApp />
       </div>
     </div>
   );
