@@ -8,11 +8,19 @@ import AboutScreen from "./AboutScreen";
 import HomeScreen from "./HomeScreen";
 import LoginScreen from "./LoginScreen";
 import NavBar from "./NavBar";
+import { useStateApp } from "./UserContext";
 
 const AppRouter = () => {
+  const theme = useStateApp()[0];
+
+  const styles = {
+    backgroundColor: theme === "light" ? "#fff" : "#000",
+    color: theme === "dark" ? "#fff" : "#000",
+  };
+
   return (
     <Router>
-      <div>
+      <div style={styles}>
         <NavBar />
 
         <Switch>

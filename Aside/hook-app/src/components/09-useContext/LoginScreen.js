@@ -1,4 +1,5 @@
 import React from "react";
+import ButtonToggle from "./ButtonToggle";
 
 const LoginScreen = () => {
   return (
@@ -14,6 +15,7 @@ const LoginScreen = () => {
           <input type="password" />
         </label>
       </form>
+      <ButtonToggle />
     </div>
   );
 };
