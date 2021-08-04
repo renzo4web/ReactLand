@@ -44,4 +44,28 @@ describe("test on useCounter", () => {
 
     expect(result.current.state).toBe(testArgument + 1);
   });
+
+  test("should  decrement the counter by 1", () => {
+    const { result } = renderHook(() =>
+      useCounter(testArgument)
+    );
+
+    act(() => {
+      result.current.decrement();
+    });
+
+    expect(result.current.state).toBe(testArgument - 1);
+  });
+
+  test("should  rest the counter to initial state", () => {
+    const { result } = renderHook(() =>
+      useCounter(testArgument)
+    );
+
+    act(() => {
+      result.current.reset();
+    });
+
+    expect(result.current.state).toBe(testArgument);
+  });
 });

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<MultipleCustomHooks /> test should render properly  1`] = `
+<div
+  className="bg-light p-3"
+>
+  <h4
+    className="alert alert-info"
+  >
+    Loading
+  </h4>
+</div>
+`;

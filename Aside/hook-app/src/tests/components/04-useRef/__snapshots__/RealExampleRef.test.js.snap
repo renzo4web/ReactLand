@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<RealExampleRef /> should the component render properly 1`] = `
+<div
+  className="bg-light p-3"
+>
+  <h4>
+    Real Example Ref
+  </h4>
+  <button
+    onClick={[Function]}
+  >
+    Show
+  </button>
+</div>
+`;
