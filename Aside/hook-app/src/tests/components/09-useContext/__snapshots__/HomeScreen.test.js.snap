@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<HomeScreen /> Test should  1`] = `
+<div>
+  <h1>
+    Home
+  </h1>
+  <p>
+    Welcome
+  </p>
+  <ButtonToggle />
+</div>
+`;

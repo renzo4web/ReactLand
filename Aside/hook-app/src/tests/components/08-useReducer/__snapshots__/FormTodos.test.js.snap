@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<FormTodo /> Test should render properly 1`] = `
+<form
+  onSubmit={[Function]}
+>
+  <label
+    className="form-label"
+    htmlFor="todo"
+  >
+    Add new todo
+    <input
+      className="form-control"
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </label>
+  <button
+    className="btn btn-outline-success"
+    type="submit"
+  >
+    Add
+  </button>
+</form>
+`;

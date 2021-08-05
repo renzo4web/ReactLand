@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TodoList /> Tests should render properly  1`] = `
+<ul
+  className="list-group mt-3"
+>
+  <TodoListItem
+    item={
+      Object {
+        "completed": false,
+        "id": 1,
+        "todo": "Learn React",
+      }
+    }
+    k="[object Object]-1"
+    key="[object Object]-1"
+    onCompleted={[MockFunction]}
+    onRemove={[MockFunction]}
+  />
+  <TodoListItem
+    item={
+      Object {
+        "completed": false,
+        "id": 2,
+        "todo": "Learn CSS",
+      }
+    }
+    k="[object Object]-2"
+    key="[object Object]-2"
+    onCompleted={[MockFunction]}
+    onRemove={[MockFunction]}
+  />
+</ul>
+`;
