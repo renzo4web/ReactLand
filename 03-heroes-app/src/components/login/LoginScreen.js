@@ -5,16 +5,30 @@ import {
   Flex,
   Image,
   Box,
+  Input,
+  Text,
 } from '@chakra-ui/react';
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useAuthContext } from '../../auth/AuthContext';
+import { types } from '../../types/types';
 import img from './../../assets/heroes/dc-arrow.jpg';
 
 const LoginScreen = () => {
+  const [, dispatch] = useAuthContext();
+  const [name, setName] = useState('');
   const history = useHistory();
+  const lastPath =
+    JSON.parse(localStorage.getItem('lastPath')) || '/';
+
   const handleLogin = () => {
-    console.log(history);
-    history.replace('/');
+    dispatch({
+      type: types.login,
+      payload: {
+        name,
+      },
+    });
+    history.replace(lastPath);
   };
 
   return (
@@ -30,6 +44,15 @@ const LoginScreen = () => {
             objectFit="cover"
             src={img}
             alt="Arrow"
+          />
+          <Text>Name:</Text>
+          <Input
+            size="md"
+            placeholder="Mr Marvel"
+            value={name}
+            onChange={({ target }) => setName(target.value)}
+            onBlur={({ target }) => setName(target.value)}
+            mb="1em"
           />
           <Button
             onClick={() => handleLogin()}

@@ -19,6 +19,8 @@
 - Search with query params
 - Responsive design
 - SPA
+- Public and Private Routes
+- App remember last section visited before logout
 
 ---
 

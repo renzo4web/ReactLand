@@ -7,11 +7,18 @@ import {
   Stack,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Link, useLocation } from 'react-router-dom';
+import {
+  Link,
+  useHistory,
+  useLocation,
+} from 'react-router-dom';
 import { ColorModeSwitcher } from '../../ColorModeSwitcher';
 import Search from '../search/Search';
+import { useAuthContext } from '../../auth/AuthContext';
+import { types } from '../../types/types';
 
 export const Navbar = props => {
+  const { name } = useAuthContext()[0];
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
@@ -20,6 +27,15 @@ export const Navbar = props => {
     <NavBarContainer {...props}>
       <MenuToggle toggle={toggle} isOpen={isOpen} />
       <MenuLinks isOpen={isOpen} />
+      <Text
+        fontSize="xl"
+        as="strong"
+        ml="auto"
+        fontWeight="bold"
+        color="white"
+      >
+        {name}
+      </Text>
       <ColorModeSwitcher />
     </NavBarContainer>
   );
@@ -84,6 +100,16 @@ const MenuItem = ({
 };
 
 const MenuLinks = ({ isOpen, color }) => {
+  const [auth, dispatch] = useAuthContext();
+  const history = useHistory();
+
+  const handleLogout = () => {
+    dispatch({
+      type: types.logout,
+    });
+    history.replace('/login');
+  };
+
   return (
     <Box
       display={{
@@ -109,6 +135,7 @@ const MenuLinks = ({ isOpen, color }) => {
         <MenuItem to="/dc">DC</MenuItem>
         <MenuItem to="/marvel">Marvel</MenuItem>
         <Button
+          onClick={handleLogout}
           size="md"
           rounded="md"
           color={color}
@@ -127,7 +154,7 @@ const MenuLinks = ({ isOpen, color }) => {
             ],
           }}
         >
-          <Link to="/login">Logout</Link>
+          Logout
         </Button>
         <Search />
       </Stack>
