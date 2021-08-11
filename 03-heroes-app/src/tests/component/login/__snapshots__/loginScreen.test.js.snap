@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginScreen /> Test should render properly 1`] = `
+<div
+  className="css-h74a88"
+>
+  <div
+    className="css-0"
+  >
+    <div
+      className="css-j7qwjs"
+    >
+      <h1
+        className="chakra-heading css-uewl2b"
+      >
+        Login
+      </h1>
+      <img
+        alt="Arrow"
+        className="chakra-image__placeholder css-1kwamjz"
+      />
+      <p
+        className="chakra-text css-0"
+      >
+        Name:
+      </p>
+      <input
+        className="chakra-input css-9tf9ac"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onFocus={[Function]}
+        placeholder="Mr Marvel"
+        value=""
+      />
+      <button
+        className="chakra-button css-5c2176"
+        onClick={[Function]}
+        type="button"
+      >
+        Login
+      </button>
+    </div>
+  </div>
+</div>
+`;

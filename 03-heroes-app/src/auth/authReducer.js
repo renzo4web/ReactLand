@@ -9,6 +9,8 @@ const authReducer = (state = {}, action) => {
 
     case types.logout:
       return { ...payload, logged: false };
+    case 'default':
+      return state;
 
     default:
       throw new Error(
