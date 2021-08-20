@@ -1,0 +1,41 @@
+.bug__entries-container {
+  width: 90%;
+  max-width: 980px;
+  margin: $spacer-4 auto;
+
+  header.bug__entries-header {
+    width: 100%;
+    display: grid;
+    justify-content: flex-start;
+    grid-template-columns: repeat(7, 1fr);
+    color: lighten($color: $gray-1, $amount: 20);
+    font-weight: $font-weight-bold;
+    border-bottom: 1px solid lighten($color: $gray-1, $amount: 20);
+    margin-bottom: $spacer-3;
+  }
+}
+
+.bug__entry-list {
+  display: grid;
+  width: 100%;
+  justify-content: flex-start;
+  grid-template-columns: repeat(7, 1fr);
+  align-items: center;
+  margin: $spacer-2 0;
+
+  .bug__entry-item {
+    text-align: left;
+  }
+}
+
+.bug__badge-status {
+  width: fit-content;
+  color: $gray-3;
+  text-align: center;
+  padding: 1px 7px;
+  border-radius: 1em;
+}
+.bug__submit-screen {
+  max-width: 850px;
+  margin: $spacer-3 auto;
+}

@@ -1,0 +1,8 @@
+.link {
+  text-decoration: none;
+  color: $gray-1;
+
+  &:hover {
+    color: $primary;
+  }
+}
