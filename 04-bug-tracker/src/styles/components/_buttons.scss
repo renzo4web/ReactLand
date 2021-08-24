@@ -82,6 +82,9 @@ $button-active-blue: #1669f2;
   transition: all 250ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
   border: none;
   border-radius: 2em;
+  margin: 1em 0;
+  display: inline-flex;
+  align-items: center;
 
   &:hover {
     background-color: darken($color: $primary, $amount: 5);

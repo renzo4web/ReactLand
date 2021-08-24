@@ -21,11 +21,12 @@
 .ui__input-group textarea {
   font-size: $font-size-2;
   padding: $spacer-2;
+  resize: none;
 }
 
 .ui__alert-input {
-  outline: 2px solid $alert;
-  background-color: $alert;
+  font-size: $font-size-1;
+  color: $alert;
 }
 
 .ui__input-group input:focus {
@@ -41,4 +42,8 @@ hr {
   object-fit: contain;
   border-radius: 50%;
   margin: 0 $spacer-3;
+}
+
+.ui__select {
+  margin: 1em 0;
 }

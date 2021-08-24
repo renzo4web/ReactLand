@@ -1,0 +1,31 @@
+.sidebar__container {
+  width: 20%;
+  background-color: $secondary;
+  margin-right: $spacer-5;
+  color: #dddddd;
+  padding: 1em;
+  height: 100vh;
+
+  h3 {
+    margin: 1em 0;
+  }
+}
+
+.sidebar__bug-card {
+  border: 2px solid darken($gray-3, 50%);
+  border-radius: 7px;
+  margin: 1em 0;
+  padding: 10px;
+
+  a {
+  }
+
+  h4 {
+    color: #f46036;
+    transition: color 250ms ease;
+
+    &:hover {
+      color: #fbfbfb;
+    }
+  }
+}

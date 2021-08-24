@@ -68,7 +68,6 @@ const BugEntries = () => {
     <main className="bug__entries-container">
       <SelectStatus onChange={handleChange} value={selectedStatus} />
 
-      <SubmitBug />
 
       <header className="bug__entries-header">
         <p>Bug</p>

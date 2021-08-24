@@ -1,7 +1,7 @@
 .bug__entries-container {
   width: 90%;
   max-width: 980px;
-  margin: $spacer-4 auto;
+  margin: 2em 0;
 
   header.bug__entries-header {
     width: 100%;
@@ -28,6 +28,9 @@
   }
 }
 
+.main__screen {
+}
+
 .bug__badge-status {
   width: fit-content;
   color: $gray-3;
@@ -36,6 +39,22 @@
   border-radius: 1em;
 }
 .bug__submit-screen {
-  max-width: 850px;
+  max-width: 750px;
   margin: $spacer-3 auto;
+
+  form {
+    margin-top: 2em;
+
+    select {
+      width: fit-content;
+      font-size: $font-size-2;
+      background-color: $primary;
+      border: none;
+      padding: $spacer-2;
+
+      option {
+        padding: $spacer-2;
+      }
+    }
+  }
 }

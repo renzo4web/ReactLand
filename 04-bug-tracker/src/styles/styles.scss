@@ -1,11 +1,13 @@
-@import "./base/settings";
-@import "./base/base";
+@import './base/settings';
+@import './base/base';
 
 // COMPONENTS
 
-@import "./components/auth";
-@import "./components/ui";
-@import "./components/buttons";
-@import "./components/links";
-@import "./components/navbar";
-@import "./components/bug";
+@import './components/auth';
+@import './components/ui';
+@import './components/buttons';
+@import './components/links';
+@import './components/navbar';
+@import './components/bug';
+@import './components/sidebar';
+@import './components/loader';

@@ -1,10 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {GrAddCircle} from "react-icons/gr";
 
 const SubmitBug = () => {
   return (
     <Link className="ui__btn-submit" to="/submit">
-      Submit Bug
+          <GrAddCircle /> Submit Bug
     </Link>
   );
 };

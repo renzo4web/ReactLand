@@ -8,6 +8,7 @@ const SelectStatus = ({ onChange, value }) => {
         onChange={onChange}
         name="status"
         id="select-status"
+        className={'ui__select'}
       >
         <option value="all">All Open</option>
         <option value="closed">Closed</option>

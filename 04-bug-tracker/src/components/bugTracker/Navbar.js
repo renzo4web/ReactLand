@@ -20,11 +20,6 @@ const Navbar = () => {
 
         <div className="navbar__list">
           <button className="ui__btn-logout">Logout</button>
-          <img
-            className="ui__avatar"
-            src="https://avatars.githubusercontent.com/u/73029154?v=4"
-            alt="avatar of user"
-          />
         </div>
       </nav>
     </div>

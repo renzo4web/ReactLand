@@ -16,3 +16,12 @@ ul,
 li {
   list-style: none;
 }
+
+a {
+  text-decoration: none;
+}
+
+.flex-row {
+  display: flex;
+  width: 100%;
+}

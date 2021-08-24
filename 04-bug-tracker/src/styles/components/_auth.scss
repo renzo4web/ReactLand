@@ -1,13 +1,34 @@
 .auth__main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+    align-items: center;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
 }
 
 .auth__container-box {
-  padding: $spacer-3;
-  border-radius: 5px;
-  background-color: $gray-2;
-  box-shadow: $shadows;
+    background-color: $gray-2;
+    border-radius: 5px;
+    box-shadow: $shadows;
+    padding: $spacer-3;
+}
+
+.auth__btn {
+    background-color: $primary;
+    border: none;
+    cursor: pointer;
+    display: block;
+    font-size: $font-size-2;
+    font-weight: $font-weight-bold;
+    margin: $spacer-3 0;
+    padding: $spacer-2 0;
+    transition: color 0.3s ease-in;
+    width: 100%;
+
+    &:hover {
+        background-color: lighten($primary, 5%);
+    }
+    &:disabled {
+        background-color: lighten($color: $gray-3, $amount: 10%);
+        cursor: not-allowed;
+    }
 }
