@@ -1,26 +1,22 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-} from 'react-router-dom';
-import { firebase } from '../firebase/firebase-config';
+import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { db, firebase } from '../firebase/firebase-config';
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import BugScreen from '../components/bugTracker/views/BugScreen';
-import BugsScreen from '../components/bugTracker/views/Bug/BugsScreen';
-import BugTrackerScreen from '../components/bugTracker/views/Dashboard/BugTrackerScreen';
-import SubmitBugScreen from '../components/bugTracker/views/SubmitBugScreen';
 import AuthRouter from './AuthRouter';
 import { login } from '../actions/auth';
 import Loader from 'react-loader-spinner';
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
+import BugTrackerScreen from '../components/bugTracker/views/Dashboard/BugTrackerScreen';
+import DashboardRoutes from './DashboardRoutes';
+import { loadBugs } from '../helpers/loadBugs';
+import { setBugs } from '../actions/bugs';
 
 const AppRouter = () => {
     const dispatch = useDispatch();
-    const { uid } = useSelector((state) => state.auth);
 
     const [checking, setChecking] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -30,10 +26,23 @@ const AppRouter = () => {
             if (user?.uid) {
                 dispatch(login(user.uid, user.displayName));
                 setIsLoggedIn(true);
+
+                loadBugs().then((bugs) => {
+                    dispatch(setBugs(bugs));
+                });
+            } else {
+                setIsLoggedIn(false);
             }
+
             setChecking(false);
         });
-    }, [dispatch, setChecking]);
+
+        db.collection('bugs').onSnapshot((snap) => {
+            loadBugs().then((bugs) => {
+                dispatch(setBugs(bugs));
+            });
+        });
+    }, [dispatch, setChecking, setIsLoggedIn]);
 
     if (checking) {
         return (
@@ -49,17 +58,22 @@ const AppRouter = () => {
         );
     }
 
+    console.log(checking);
+
     return (
         <Router>
             <Switch>
-                <Route path='/auth' component={AuthRouter} />
+                <PublicRoute
+                    isLoggedIn={isLoggedIn}
+                    component={AuthRouter}
+                    path='/auth'
+                />
 
-                {/* TODO : PRivate Route and Public Routes */}
-
-                <Route exact path='/' component={BugTrackerScreen} />
-                <Route exact path='/submit' component={SubmitBugScreen} />
-                <Route exact path='/bugs' component={BugsScreen} />
-                <Route exact path='/bug/:bugId' component={BugScreen} />
+                <PrivateRoute
+                    path='/'
+                    isLoggedIn={isLoggedIn}
+                    component={DashboardRoutes}
+                />
 
                 <Redirect to='/auth/login' />
             </Switch>
