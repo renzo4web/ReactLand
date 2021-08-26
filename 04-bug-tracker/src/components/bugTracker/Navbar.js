@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
 
 const Navbar = () => {
@@ -11,26 +11,13 @@ const Navbar = () => {
 
     return (
         <div className='navbar__container'>
-            <nav className='navbar'>
-                <ul className='navbar__list'>
-                    <li>
-                        <NavLink className='navbar__item' to='/'>
-                            Dashboard
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink clasname='navbar__item' to='/bugs'>
-                            Bugs
-                        </NavLink>
-                    </li>
-                </ul>
+            <Link className='navbar__item' to='/'>
+                Dashboard
+            </Link>
 
-                <div className='navbar__list'>
-                    <button onClick={handleLogout} className='ui__btn-logout'>
-                        Logout
-                    </button>
-                </div>
-            </nav>
+            <button onClick={handleLogout} className='ui__btn-logout'>
+                Logout
+            </button>
         </div>
     );
 };

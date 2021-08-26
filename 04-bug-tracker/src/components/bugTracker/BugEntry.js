@@ -31,7 +31,7 @@ const BugEntry = (props) => {
         <ul className='bug__entry-list'>
             <li className='bug__entry-item'>{title}</li>
             <li className='bug__entry-item'>{icon && icon}</li>
-            <li className='bug__entry-item'>{}</li>
+            <li className='bug__entry-item'></li>
             <li className='bug__entry-item'>
                 {new Date(createdAt).toLocaleDateString('es-AR')}
             </li>

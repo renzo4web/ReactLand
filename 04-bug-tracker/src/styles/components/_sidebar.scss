@@ -1,31 +1,43 @@
 .sidebar__container {
-  width: 20%;
-  background-color: $secondary;
-  margin-right: $spacer-5;
-  color: #dddddd;
-  padding: 1em;
-  height: 100vh;
+    background-color: $secondary;
+    color: #dddddd;
+    padding: 1em 0.5em;
+    height: 100vh;
+    border-radius: $spacer-3;
+    flex-grow: 1;
+    margin-right: 10px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  h3 {
-    margin: 1em 0;
-  }
+    h3 {
+        margin: 1em 0;
+    }
 }
 
 .sidebar__bug-card {
-  border: 2px solid darken($gray-3, 50%);
-  border-radius: 7px;
-  margin: 1em 0;
-  padding: 10px;
+    border: 2px solid darken($gray-3, 50%);
+    border-radius: 7px;
+    margin: 1em 0;
+    padding: 10px;
+    width: 100%;
 
-  a {
-  }
+    transition: all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
-  h4 {
-    color: #f46036;
-    transition: color 250ms ease;
+    h4 {
+        color: #f46036;
+        transition: color 250ms ease;
 
-    &:hover {
-      color: #fbfbfb;
+        &:hover {
+            color: #fbfbfb;
+        }
     }
-  }
+}
+
+.sidebar__list-bugs {
+    height: 100%;
+    width: 90%;
+    overflow-y: auto;
 }

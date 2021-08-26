@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import { db, firebase } from '../firebase/firebase-config';
 
@@ -10,10 +10,8 @@ import { login } from '../actions/auth';
 import Loader from 'react-loader-spinner';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
-import BugTrackerScreen from '../components/bugTracker/views/Dashboard/BugTrackerScreen';
 import DashboardRoutes from './DashboardRoutes';
-import { loadBugs } from '../helpers/loadBugs';
-import { setBugs } from '../actions/bugs';
+import { startLoadingBugs } from '../actions/bugs';
 
 const AppRouter = () => {
     const dispatch = useDispatch();
@@ -26,10 +24,7 @@ const AppRouter = () => {
             if (user?.uid) {
                 dispatch(login(user.uid, user.displayName));
                 setIsLoggedIn(true);
-
-                loadBugs().then((bugs) => {
-                    dispatch(setBugs(bugs));
-                });
+                dispatch(startLoadingBugs());
             } else {
                 setIsLoggedIn(false);
             }
@@ -38,9 +33,7 @@ const AppRouter = () => {
         });
 
         db.collection('bugs').onSnapshot((snap) => {
-            loadBugs().then((bugs) => {
-                dispatch(setBugs(bugs));
-            });
+            dispatch(startLoadingBugs());
         });
     }, [dispatch, setChecking, setIsLoggedIn]);
 
@@ -57,8 +50,6 @@ const AppRouter = () => {
             </div>
         );
     }
-
-    console.log(checking);
 
     return (
         <Router>

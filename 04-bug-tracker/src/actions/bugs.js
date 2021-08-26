@@ -7,6 +7,7 @@
 
 import Swal from 'sweetalert2';
 import { db } from '../firebase/firebase-config';
+import { loadBugs } from '../helpers/loadBugs';
 import { types } from '../types/types';
 
 export const addNewBug = (bug) => {
@@ -17,7 +18,7 @@ export const addNewBug = (bug) => {
             title: bug.name,
             bugId: new Date().getTime() + uid,
             reporter: name,
-            discription: bug.description,
+            description: bug.description,
             severity: bug.severity,
             assignee: bug.assignee || name,
             status: bug.status,
@@ -30,7 +31,25 @@ export const addNewBug = (bug) => {
     };
 };
 
+export const startLoadingBugs = () => {
+    return async (dispatch) => {
+        const bugs = await loadBugs();
+        dispatch(setBugs(bugs));
+    };
+};
+
 export const setBugs = (bugs) => ({
     type: types.bugsLoad,
     payload: bugs,
 });
+
+export const startEditBug = (bug) => {
+    return async (dispatch) => {
+        console.log({ bug });
+        const docRef = await db
+            .collection('bugs')
+            .where('bugId', '==', bug.bugId);
+
+        console.log(docRef);
+    };
+};

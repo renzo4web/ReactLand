@@ -81,8 +81,6 @@ const SubmitBugScreen = () => {
 
     return (
         <>
-            <Navbar />
-
             <div className='bug__submit-screen'>
                 <h4>
                     {errors['incomplete_form'] && errors['incomplete_form']}
@@ -162,9 +160,6 @@ const SubmitBugScreen = () => {
                         Submit Bug
                     </button>
                 </form>
-                <Link className='ui__button-cancel' to='/'>
-                    <TiArrowBack /> Go Back
-                </Link>
             </div>
         </>
     );

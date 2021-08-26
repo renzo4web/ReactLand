@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import SelectStatus from '../ui/SelectStatus';
 import BugEntry from './BugEntry';
-import SubmitBug from './SubmitBug';
 
 const BugEntries = () => {
     const [selectedStatus, setSelectedStatus] = useState('all');
@@ -65,7 +65,7 @@ const BugEntries = () => {
     };
 
     return (
-        <main className='bug__entries-container'>
+        <main className={'bug__entries-container'}>
             <SelectStatus onChange={handleChange} value={selectedStatus} />
 
             <header className='bug__entries-header'>

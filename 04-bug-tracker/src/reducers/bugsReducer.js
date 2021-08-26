@@ -22,7 +22,6 @@ export const bugsReducer = (
     action
 ) => {
     const { type, payload } = action;
-    console.log(payload);
     switch (type) {
         case types.bugsLoad:
             return { ...state, bugs: payload };

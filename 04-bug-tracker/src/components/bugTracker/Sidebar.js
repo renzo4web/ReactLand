@@ -1,81 +1,51 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { startLogout } from '../../actions/auth';
 import BugSidebar from './BugSidebar';
+import Navbar from './Navbar';
 import SubmitBug from './SubmitBug';
 
 const Sidebar = () => {
     const { name } = useSelector((state) => state.auth);
+    const { bugs } = useSelector((state) => state.bugs);
+    const dispatch = useDispatch();
 
-    const mockData = [
-        {
-            bug: 'MArketing video review',
-            reporter: 'SCoot',
-            createdAt: '14/01/2001',
-            status: 'in-progress',
-            assignee: 'Steve',
-            severity: 'low',
-        },
-        {
-            bug: 'Replace Primer',
-            reporter: 'Dadel',
-            createdAt: '20/01/2001',
-            assignee: 'Dowetre',
-            status: 'to-do',
-            severity: 'Major',
-        },
-        {
-            bug: 'Streamline support tickets',
-            reporter: 'Monica',
-            createdAt: '20/01/2005',
-            status: 'open',
-            assignee: 'Carlos',
-            severity: 'Medium',
-        },
-        {
-            bug: 'Like option not workin',
-            reporter: 'Alonso',
-            createdAt: '20/01/2005',
-            status: 'open',
-            assignee: 'Hamilton',
-            severity: 'none',
-        },
-        {
-            bug: 'Email campaing',
-            reporter: 'Max',
-            createdAt: '20/01/2001',
-            assignee: 'Pierre',
-            status: 'to-be-tested',
-            severity: 'Medium',
-        },
-        {
-            bug: 'This App',
-            reporter: 'Renzo',
-            createdAt: '20/01/2001',
-            assignee: 'Pierre',
-            status: 'completed',
-            severity: 'none',
-        },
-    ];
+    const handleLogout = () => {
+        dispatch(startLogout());
+    };
 
     return (
         <aside className='sidebar__container'>
-            <h2>{name}</h2>
             <img
-                style={{ display: 'block', borderRadius: '50%' }}
+                style={{
+                    display: 'block',
+                    borderRadius: '50%',
+                    maxWidth: '100px',
+                }}
                 src={`https://ui-avatars.com/api/?name=${name}`}
                 alt=''
             />
-
+            <h2>{name}</h2>
+            <Link className='navbar__item' to='/'>
+                Dashboard
+            </Link>
             <SubmitBug />
 
-            <h3>Bugs Assigneed:</h3>
-            <ul>
-                {mockData.map((bug) => (
-                    <li key={bug.bug}>
-                        <BugSidebar {...bug} />
-                    </li>
-                ))}
+            <h3>Bugs Assigned:</h3>
+            <ul className='sidebar__list-bugs'>
+                {bugs
+                    .filter(({ assignee }) => assignee === name)
+                    .map((bug) => (
+                        <li key={bug.bugId}>
+                            <BugSidebar {...bug} />
+                        </li>
+                    ))}
             </ul>
+
+            <button onClick={handleLogout} className='ui__btn-logout'>
+                Logout
+            </button>
         </aside>
     );
 };
