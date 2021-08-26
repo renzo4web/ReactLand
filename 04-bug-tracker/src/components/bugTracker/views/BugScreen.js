@@ -4,7 +4,6 @@ import { GrAlert } from 'react-icons/gr';
 import { useSelector, useDispatch } from 'react-redux';
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import { useHistory, useParams } from 'react-router-dom';
-import { useForm } from '../../../hooks/useForm';
 import SelectStatus from '../../ui/SelectStatus';
 import SelectSeverity from '../../ui/SelectSeverity';
 import { startEditBug } from '../../../actions/bugs';
@@ -17,7 +16,7 @@ const initialForm = {
 };
 
 const BugScreen = () => {
-    let { bugId } = useParams();
+    let { id: bugId } = useParams();
     const history = useHistory();
     const { bugs } = useSelector((state) => state.bugs);
     const dispatch = useDispatch();
@@ -37,7 +36,6 @@ const BugScreen = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(activeBug.bugId);
         dispatch(startEditBug({ ...activeBug, ...input }));
     };
 
@@ -45,12 +43,19 @@ const BugScreen = () => {
         let timer;
         // wait for load the bugs
         if (bugs.length > 0) {
-            setActiveBug(bugs.find((bug) => bug.bugId === bugId));
-            setInput({ ...activeBug });
+            const bugFound = bugs.find((bug) => bug.id === bugId);
+
+            if (bugFound !== undefined) {
+                setActiveBug(bugFound);
+                setInput({ ...activeBug });
+            } else {
+                setActiveBug(undefined);
+            }
+
             setLoading(false);
         }
 
-        if (!loading) {
+        if (!loading && activeBug !== undefined) {
             inputRef.current.focus();
         }
 
@@ -86,8 +91,6 @@ const BugScreen = () => {
             </div>
         );
     }
-
-    console.log({ activeBug }, { input });
 
     return (
         <div className='center-container'>

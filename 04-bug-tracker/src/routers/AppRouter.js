@@ -20,6 +20,7 @@ const AppRouter = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
+        // Listener gets trigger when db is updated
         firebase.auth().onAuthStateChanged((user) => {
             if (user?.uid) {
                 dispatch(login(user.uid, user.displayName));
@@ -33,6 +34,7 @@ const AppRouter = () => {
         });
 
         db.collection('bugs').onSnapshot((snap) => {
+            console.log(snap.id);
             dispatch(startLoadingBugs());
         });
     }, [dispatch, setChecking, setIsLoggedIn]);

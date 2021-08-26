@@ -23,8 +23,10 @@ const SubmitBugScreen = () => {
 
     const [formVals, setFormVals] = useState(initialForm);
     const [errors, setErrors] = useState({});
+    const [loading, setLoading] = useState(false);
 
     const handleChange = ({ target }) => {
+        setLoading(false);
         const { name, value } = target;
 
         const invalidInputs = cleanForm(formVals);
@@ -49,6 +51,7 @@ const SubmitBugScreen = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        setLoading(true);
         const validToSubmit = Object.entries(errors).every(
             (tupple) => tupple[1] === null
         );
@@ -59,7 +62,6 @@ const SubmitBugScreen = () => {
                 return tupple[1].length > 0;
             }
         });
-        console.log({ allFieldsComplete });
 
         if (!allFieldsComplete) {
             setErrors({
@@ -74,7 +76,7 @@ const SubmitBugScreen = () => {
         }
 
         if (validToSubmit && allFieldsComplete) {
-            dispatch(addNewBug(formVals));
+            dispatch(addNewBug(formVals)).then((temp) => setLoading(false));
             setFormVals(initialForm);
         }
     };
@@ -156,7 +158,11 @@ const SubmitBugScreen = () => {
                             value={formVals['assignee']}
                         />
                     </div>
-                    <button type='submit' className='ui__btn-submit'>
+                    <button
+                        disabled={loading}
+                        type='submit'
+                        className='ui__btn-submit'
+                    >
                         Submit Bug
                     </button>
                 </form>
