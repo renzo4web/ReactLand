@@ -12,10 +12,10 @@ const RegisterScreen = () => {
     const dispatch = useDispatch();
 
     const [formValues, handleInputChange] = useForm({
-        name: 'TEst',
-        email: 'test@gmail.com',
-        password: '123456',
-        password2: '123456',
+        name: '',
+        email: '',
+        password: '',
+        password2: '',
     });
 
     const { name, email, password, password2 } = formValues;
@@ -81,8 +81,6 @@ const RegisterScreen = () => {
                         type='text'
                     />
                 </div>
-
-                {/* TODO : CHECK THE PASSAWORD ARE THE SAME */}
 
                 <div className='ui__input-group'>
                     <label htmlFor='password'>Password</label>

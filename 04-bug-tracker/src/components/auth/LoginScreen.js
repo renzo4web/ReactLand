@@ -8,8 +8,8 @@ import { removeError, setError } from '../../actions/ui';
 
 const LoginScreen = () => {
     const initialForm = {
-        email: 'example@gmail.com',
-        password: '1234',
+        email: '',
+        password: '',
     };
     const { msgError, loading } = useSelector((state) => state.ui);
     const dispatch = useDispatch();
@@ -59,6 +59,7 @@ const LoginScreen = () => {
                     <label htmlFor='email'>Email</label>
                     <input
                         value={email}
+                        placeholder='test@gmail.com'
                         onChange={handleInputChange}
                         name='email'
                         id='email'
