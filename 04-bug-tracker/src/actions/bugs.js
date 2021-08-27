@@ -16,11 +16,9 @@ export const addNewBug = (bug) => {
             status: bug.status,
             createdAt: new Date().getTime(),
         };
-
         const docRef = await db.collection('bugs').add(newBug);
         try {
             const docAdded = await docRef;
-            console.log(docAdded.id);
             await db
                 .collection('bugs')
                 .doc(docAdded.id)
@@ -57,3 +55,7 @@ export const deleteBug = (id) => {
         await db.collection('bugs').doc(id).delete();
     };
 };
+
+export const bugsLogout = () => ({
+    type: types.bugsLogoutCleaning,
+});

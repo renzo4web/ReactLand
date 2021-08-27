@@ -1,8 +1,9 @@
 import Swal from 'sweetalert2';
 
-import { firebase, googleAuthProvider, db } from '../firebase/firebase-config';
+import { firebase, googleAuthProvider } from '../firebase/firebase-config';
 import { types } from '../types/types';
-import { finishLoading, setError, startLoading } from './ui';
+import { bugsLogout } from './bugs';
+import { finishLoading, startLoading } from './ui';
 
 export const startLoginEmailPassword = (email, password) => {
     return (dispatch) => {
@@ -34,16 +35,6 @@ export const startGoogleLogin = () => {
     };
 };
 
-// export const registerFirestore = (name, email, password) => {
-//     return (dispatch) => {
-//         db.collection('users')
-//             .add(dispatch(register(name, email, password)))
-//             .then((docRef) => {
-//                 console.log('Document written with ID: ', docRef.id);
-//             });
-//     };
-// };
-
 export const startRegisterWithEmailPasswordName = (name, email, password) => {
     return (dispatch) => {
         firebase
@@ -73,6 +64,7 @@ export const login = (uid, displayName) => ({
 export const startLogout = () => {
     return async (dispatch) => {
         await firebase.auth().signOut();
+        dispatch(bugsLogout());
         dispatch(logout());
     };
 };

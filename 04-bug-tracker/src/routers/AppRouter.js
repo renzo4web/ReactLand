@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
-import { db, firebase } from '../firebase/firebase-config';
+import { firebase } from '../firebase/firebase-config';
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 import AuthRouter from './AuthRouter';
@@ -11,7 +11,6 @@ import Loader from 'react-loader-spinner';
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
 import DashboardRoutes from './DashboardRoutes';
-import { startLoadingBugs } from '../actions/bugs';
 
 const AppRouter = () => {
     const dispatch = useDispatch();
@@ -20,22 +19,15 @@ const AppRouter = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        // Listener gets trigger when db is updated
         firebase.auth().onAuthStateChanged((user) => {
             if (user?.uid) {
                 dispatch(login(user.uid, user.displayName));
                 setIsLoggedIn(true);
-                dispatch(startLoadingBugs());
             } else {
                 setIsLoggedIn(false);
             }
 
             setChecking(false);
-        });
-
-        db.collection('bugs').onSnapshot((snap) => {
-            console.log(snap.id);
-            dispatch(startLoadingBugs());
         });
     }, [dispatch, setChecking, setIsLoggedIn]);
 

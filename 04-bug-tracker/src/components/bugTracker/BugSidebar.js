@@ -31,7 +31,7 @@ const BugSidebar = ({ title, status, severity, id }) => {
     };
 
     return (
-        <div className='sidebar__bug-card'>
+        <div key={id} className='sidebar__bug-card'>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Link to={`/bug/${id}`}>
                     <h4>

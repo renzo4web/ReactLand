@@ -10,16 +10,7 @@ const COLOR_STATUS = {
 };
 
 const BugEntry = (props) => {
-    const {
-        uid,
-        title,
-        icon,
-        reporter,
-        createdAt,
-        status,
-        assignee,
-        severity,
-    } = props;
+    const { title, icon, createdAt, status, assignee, severity } = props;
     const statusFormated = `${status
         .charAt(0)
         .toUpperCase()

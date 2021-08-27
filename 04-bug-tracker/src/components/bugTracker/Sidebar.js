@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { startLogout } from '../../actions/auth';
+
 import BugSidebar from './BugSidebar';
-import Navbar from './Navbar';
 import SubmitBug from './SubmitBug';
 
 const Sidebar = () => {
@@ -37,7 +37,7 @@ const Sidebar = () => {
                 {bugs
                     .filter(({ assignee }) => assignee === name)
                     .map((bug) => (
-                        <li key={bug.bugId}>
+                        <li key={bug.id}>
                             <BugSidebar {...bug} />
                         </li>
                     ))}

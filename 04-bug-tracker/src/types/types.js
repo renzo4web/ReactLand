@@ -9,10 +9,6 @@ export const types = {
     uiStartLoading: '[UI] Start Loading',
     uiFinishLoading: '[UI] Finish Loading',
     // bugsReducer
-    bugsAddNew: '[Bugs] New Bug',
-    bugsActive: '[Bugs] Set active bug',
     bugsLoad: '[Bugs] Load bugs',
-    bugsUpdated: '[Bugs] Update Bug',
-    bugsDelete: '[Bugs] Delete bug',
     bugsLogoutCleaning: '[Bugs] Logout Cleaning',
 };

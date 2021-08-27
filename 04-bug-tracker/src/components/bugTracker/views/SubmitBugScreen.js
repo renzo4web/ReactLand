@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
-import { TiArrowBack } from 'react-icons/ti';
 import SelectStatus from '../../ui/SelectStatus';
-import Navbar from '../Navbar';
 import SelectSeverity from '../../ui/SelectSeverity';
 import { cleanForm } from '../../../helpers/cleanForm';
 import { getInputAlertMessage } from '../../../selectors/getInputAlertMessage';

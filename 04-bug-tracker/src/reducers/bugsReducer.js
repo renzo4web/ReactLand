@@ -12,6 +12,9 @@ export const bugsReducer = (
         case types.bugsLoad:
             return { ...state, bugs: payload };
 
+        case types.bugsLogoutCleaning:
+            return { ...state, bugs: [] };
+
         default:
             return state;
     }

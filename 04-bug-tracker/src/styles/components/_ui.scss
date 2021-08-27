@@ -1,49 +1,49 @@
 .ui__input-group {
-  display: flex;
-  flex-direction: column;
-  margin: $spacer-1 0;
+    display: flex;
+    flex-direction: column;
+    margin: $spacer-1 0;
 }
 
 .ui__input-group label {
-  font-size: $font-size-2;
-  margin: $spacer-1 0;
+    font-size: $font-size-2;
+    margin: $spacer-1 0;
 }
 
 .ui__input-group input {
-  width: 100%;
-  padding: $spacer-1 5px;
-  font-size: $font-size-2;
-  border-radius: 8px;
-  outline: none;
-  border: none;
+    width: 100%;
+    padding: $spacer-1 5px;
+    font-size: $font-size-2;
+    border-radius: 8px;
+    outline: none;
+    border: none;
 }
 
 .ui__input-group textarea {
-  font-size: $font-size-2;
-  padding: $spacer-2;
-  resize: none;
+    font-size: $font-size-2;
+    padding: $spacer-2;
+    resize: none;
 }
 
 .ui__alert-input {
-  font-size: $font-size-1;
-  color: $alert;
+    font-size: $font-size-1;
+    color: $alert;
 }
 
 .ui__input-group input:focus {
-  outline: 2px solid $primary;
+    outline: 2px solid $primary;
 }
 
 hr {
-  margin: $spacer-2 0;
+    margin: $spacer-2 0;
 }
 
 .ui__avatar {
-  max-height: 40px;
-  object-fit: contain;
-  border-radius: 50%;
-  margin: 0 $spacer-3;
+    max-height: 40px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin: 0 $spacer-3;
 }
 
 .ui__select {
-  margin: 1em 0;
+    margin: 1em 0;
 }
