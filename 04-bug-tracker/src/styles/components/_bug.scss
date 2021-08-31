@@ -67,11 +67,32 @@
     border-radius: 5px;
     box-shadow: $shadows;
     font-size: $font-size-1;
+    border-radius: 5px;
 
     input,
     textarea {
+        margin: 0.5em 0;
         font-size: inherit;
-        padding: $spacer-3 5px;
+        padding: $spacer-2 5px;
+    }
+
+    select {
+        width: fit-content;
+        font-size: 1.2rem;
+    }
+
+    button {
+        margin-top: 20px;
+        border: none;
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0.5em 1em;
+        border-radius: 5px;
+
+        &:hover {
+            background-color: $secondary;
+            color: $gray-2;
+        }
     }
 }
 
