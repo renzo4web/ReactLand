@@ -8,13 +8,17 @@ import {
 
 import LoginScreen from '../components/auth/LoginScreen';
 import CalendarScreen from '../components/calendar/CalendarScreen';
+import CalendarLangContext from "../contexts/CalendarLangContext";
 
 const AppRouter = () => {
     return (
         <Router>
             <Switch>
                 <Route exact path='/login' component={LoginScreen} />
-                <Route exact path='/' component={CalendarScreen} />
+
+                <CalendarLangContext>
+                    <Route exact path='/' component={CalendarScreen} />
+                </CalendarLangContext>
 
                 <Redirect to='/' />
             </Switch>
