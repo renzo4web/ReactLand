@@ -33,7 +33,6 @@ const ModalCalendar = ({ show, setShow }) => {
 	};
 
 	const dispatch = useDispatch();
-	const { uid, name } = useSelector(state => state.auth);
 	const { activeEvent } = useSelector(state => state.calendar);
 
 	const [dateStart, setDateStart] = useState(() => now.toDate());

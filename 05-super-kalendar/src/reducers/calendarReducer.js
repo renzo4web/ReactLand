@@ -1,4 +1,3 @@
-import moment from 'moment/moment';
 import { types } from '../types/types';
 
 // {

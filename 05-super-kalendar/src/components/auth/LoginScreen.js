@@ -4,7 +4,6 @@ import Register from './Register';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useForm } from '../../hooks/useForm';
 
 const LoginScreen = () => {
 	const onFinish = values => {

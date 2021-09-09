@@ -15,7 +15,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
 	cleanActiveEvent,
 	setActiveEvent,
-	deletedEvent,
 	eventStartLoading,
 	eventStartDelete,
 } from '../../actions/events';
@@ -38,7 +37,7 @@ const CalendarScreen = () => {
 
 	useEffect(() => {
 		dispatch(eventStartLoading());
-	}, []);
+	}, [dispatch]);
 
 	const onDoubleClick = () => {
 		setShow(true);
