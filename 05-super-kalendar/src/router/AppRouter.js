@@ -1,29 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-    Route,
-    BrowserRouter as Router,
-    Switch,
-    Redirect,
+	Route,
+	BrowserRouter as Router,
+	Switch,
+	Redirect,
 } from 'react-router-dom';
+import { startChecking } from '../actions/auth';
 
 import LoginScreen from '../components/auth/LoginScreen';
+import Loading from '../components/ui/Loading';
 import CalendarScreen from '../components/calendar/CalendarScreen';
-import CalendarLangContext from "../contexts/CalendarLangContext";
+import CalendarLangContext from '../contexts/CalendarLangContext';
+import PublicRoute from './PublicRoute';
+import PrivateRoute from './PrivateRoute';
 
 const AppRouter = () => {
-    return (
-        <Router>
-            <Switch>
-                <Route exact path='/login' component={LoginScreen} />
+	const dispatch = useDispatch();
+	const { checking, uid } = useSelector(state => state.auth);
 
-                <CalendarLangContext>
-                    <Route exact path='/' component={CalendarScreen} />
-                </CalendarLangContext>
+	useEffect(() => {
+		dispatch(startChecking());
+	}, [dispatch]);
 
-                <Redirect to='/' />
-            </Switch>
-        </Router>
-    );
+	if (checking) {
+		return <Loading />;
+	}
+
+	return (
+		<Router>
+			<Switch>
+				<PublicRoute
+					exact
+					path="/login"
+					isAuthenticated={Boolean(uid)}
+					component={LoginScreen}
+				/>
+
+				<CalendarLangContext>
+					<PrivateRoute
+						exact
+						path="/"
+						isAuthenticated={Boolean(uid)}
+						component={CalendarScreen}
+					/>
+				</CalendarLangContext>
+			</Switch>
+		</Router>
+	);
 };
 
 export default AppRouter;

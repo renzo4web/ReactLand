@@ -1,13 +1,15 @@
+import moment from 'moment';
 import React from 'react';
-import Alert from "react-bootstrap/Alert";
+import Alert from 'react-bootstrap/Alert';
 
-const CalendarEvent = ({event}) => {
-    const {title, user} = event
-    return (
-        <Alert variant={'info'}>
-            <Alert.Heading>{title}</Alert.Heading>
-        </Alert>
-    )
-}
+const CalendarEvent = ({ event }) => {
+	const { title, user, start, end } = event;
+	return (
+		<div>
+			<strong> {title} </strong>
+			<span>- {user.name} </span>
+		</div>
+	);
+};
 
 export default CalendarEvent;

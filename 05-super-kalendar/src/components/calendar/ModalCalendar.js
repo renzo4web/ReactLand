@@ -10,9 +10,9 @@ import moment from 'moment/moment';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-	addNewEvent,
 	cleanActiveEvent,
-	updatedEvent,
+	eventStartAddNew,
+	eventStartUpdate,
 } from '../../actions/events';
 
 const now = moment().minutes(0).seconds(0).add(1, 'hours');
@@ -23,10 +23,6 @@ const initialFormVals = {
 	notes: '',
 	start: now.toDate(),
 	end: end.toDate(),
-	user: {
-		_id: '',
-		name: '',
-	},
 };
 
 const ModalCalendar = ({ show, setShow }) => {
@@ -37,7 +33,9 @@ const ModalCalendar = ({ show, setShow }) => {
 	};
 
 	const dispatch = useDispatch();
+	const { uid, name } = useSelector(state => state.auth);
 	const { activeEvent } = useSelector(state => state.calendar);
+
 	const [dateStart, setDateStart] = useState(() => now.toDate());
 	const [dateEnd, setDateEnd] = useState(() => end.toDate());
 
@@ -93,21 +91,9 @@ const ModalCalendar = ({ show, setShow }) => {
 			return;
 		}
 
-		// TODO: SAVE EVENT TO DB
-		if (activeEvent) {
-			dispatch(updatedEvent(formVals));
-		} else {
-			dispatch(
-				addNewEvent({
-					...formVals,
-					id: new Date().getTime(),
-					user: {
-						_id: '23123n',
-						name: 'Renzo',
-					},
-				})
-			);
-		}
+		activeEvent
+			? dispatch(eventStartUpdate(formVals))
+			: dispatch(eventStartAddNew(formVals));
 
 		setFormVals(initialFormVals);
 		setShow(false);

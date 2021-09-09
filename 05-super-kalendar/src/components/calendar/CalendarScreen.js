@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Calendar, momentLocalizer } from 'react-big-calendar';
 import moment from 'moment';
 import Container from 'react-bootstrap/Container';
@@ -16,6 +16,8 @@ import {
 	cleanActiveEvent,
 	setActiveEvent,
 	deletedEvent,
+	eventStartLoading,
+	eventStartDelete,
 } from '../../actions/events';
 import AddNewFab from '../ui/AddNewFab';
 import RemoveEventFab from '../ui/RemoveEventFab';
@@ -23,14 +25,20 @@ import RemoveEventFab from '../ui/RemoveEventFab';
 const localizer = momentLocalizer(moment);
 
 const CalendarScreen = () => {
-	const { events, activeEvent } = useSelector(state => state.calendar);
 	const dispatch = useDispatch();
+	const { uid } = useSelector(state => state.auth);
+	const { events, activeEvent } = useSelector(state => state.calendar);
+
 	const [lastView, setLastView] = useState(
 		() => localStorage.getItem('lastView') || 'month'
 	);
 	const [show, setShow] = useState(false);
 
 	const { currLang } = useCalendarContext();
+
+	useEffect(() => {
+		dispatch(eventStartLoading());
+	}, []);
 
 	const onDoubleClick = () => {
 		setShow(true);
@@ -51,6 +59,20 @@ const CalendarScreen = () => {
 		setShow(true);
 	};
 
+	const eventStyleGetter = (event, start, end, isSelected) => {
+		const style = {
+			backgroundColor: uid === event.user._id ? '#367CF7' : '#465660',
+			borderRadius: '0px',
+			opacity: 0.8,
+			display: 'block',
+			color: 'white',
+		};
+
+		return {
+			style,
+		};
+	};
+
 	moment.locale(currLang);
 
 	return (
@@ -66,6 +88,7 @@ const CalendarScreen = () => {
 					startAccessor="start"
 					endAccessor="end"
 					style={{ height: '80vh' }}
+					eventPropGetter={eventStyleGetter}
 					onDoubleClickEvent={onDoubleClick}
 					onSelectEvent={onSelect}
 					onSelectSlot={handleSelectSlot}
@@ -87,7 +110,7 @@ const CalendarScreen = () => {
 			/>
 
 			{activeEvent && (
-				<RemoveEventFab onClick={() => dispatch(deletedEvent())} />
+				<RemoveEventFab onClick={() => dispatch(eventStartDelete())} />
 			)}
 		</Container>
 	);
