@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test components/auth/LoginScreen should render properly 1`] = `
+<div
+  className="my-auto container"
+>
+  <main
+    className="my-auto bg-primary text-white p-5 rounded row"
+  >
+    <div
+      className="col-sm"
+    >
+      <form
+        className="bg-dark p-3 rounded text-white flex-fill"
+        onSubmit={[Function]}
+      >
+        <h2>
+          Login
+        </h2>
+        <div
+          className="mb-3"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicEmail"
+          >
+            Email address
+          </label>
+          <input
+            className="form-control"
+            id="formBasicEmail"
+            name="lEmail"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Enter email"
+            type="email"
+            value="test@gmail.com"
+          />
+          <small
+            className="text-muted form-text"
+          >
+            We'll never share your email with anyone else.
+          </small>
+        </div>
+        <div
+          className="mb-3"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicPassword"
+          >
+            Password
+          </label>
+          <input
+            className="form-control"
+            id="formBasicPassword"
+            name="lPassword"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Password"
+            type="password"
+            value="123456"
+          />
+        </div>
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+    <div
+      className="col-sm"
+    >
+      <form
+        className="bg-white p-3 rounded text-dark"
+        onSubmit={[Function]}
+      >
+        <h2>
+          Register
+        </h2>
+        <div
+          className="mb-3"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicText"
+          >
+            Name
+          </label>
+          <input
+            className="form-control"
+            id="formBasicText"
+            name="rName"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Enter your name"
+            type="text"
+            value=""
+          />
+        </div>
+        <div
+          className="mb-3"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicEmail"
+          >
+            Email address
+          </label>
+          <input
+            className="form-control"
+            id="formBasicEmail"
+            name="rEmail"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Enter email"
+            type="email"
+            value=""
+          />
+          <small
+            className="text-muted form-text"
+          >
+            Use a temporary email if necessary
+          </small>
+        </div>
+        <div
+          className="mb-3"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicPassword"
+          >
+            Password
+          </label>
+          <input
+            className="form-control"
+            id="formBasicPassword"
+            name="rPassword1"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Password"
+            type="password"
+            value=""
+          />
+        </div>
+        <div
+          className="mb-3"
+        >
+          <label
+            className="form-label"
+            htmlFor="formBasicPassword"
+          >
+            Confirm Password
+          </label>
+          <input
+            className="form-control"
+            id="formBasicPassword"
+            name="rPassword2"
+            onBlur={[Function]}
+            onChange={[Function]}
+            placeholder="Password"
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          className="btn btn-primary"
+          disabled={false}
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </main>
+</div>
+`;

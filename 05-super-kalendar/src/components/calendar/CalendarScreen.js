@@ -49,6 +49,7 @@ const CalendarScreen = () => {
 
 	const onViewChange = event => {
 		setLastView(event);
+		localStorage.setItem('lastView', event);
 	};
 
 	const handleSelectSlot = event => {
@@ -94,7 +95,7 @@ const CalendarScreen = () => {
 					onView={onViewChange}
 					view={lastView}
 					selectable
-					messages={currLang === 'es' && messagesEs}
+					messages={currLang === 'es' ? messagesEs : {}}
 					components={{
 						event: CalendarEvent,
 					}}

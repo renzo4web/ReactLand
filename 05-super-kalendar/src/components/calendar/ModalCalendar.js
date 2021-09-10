@@ -80,7 +80,6 @@ const ModalCalendar = ({ show, setShow }) => {
 		const momentEnd = moment(formVals.end);
 
 		if (momentStart.isSameOrAfter(momentEnd)) {
-			console.log('ERROR');
 			toast.error('The end date must be after start date');
 			return;
 		}

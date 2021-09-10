@@ -5,7 +5,7 @@ import { useForm } from '../../hooks/useForm';
 import { startLogin } from '../../actions/auth';
 import { useDispatch } from 'react-redux';
 
-const Login = ({ onFinish }) => {
+const Login = () => {
 	const dispatch = useDispatch();
 	const [formLoginVals, handleLoginInputChange] = useForm({
 		lEmail: 'test@gmail.com',

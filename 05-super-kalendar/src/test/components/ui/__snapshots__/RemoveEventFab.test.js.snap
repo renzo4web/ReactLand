@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test components/ui/RemoveEventFab should render properly 1`] = `
+<button
+  className="btn btn-danger rounded p-2 position-fixed bottom-0 start-0 m-4 btn btn-primary"
+  disabled={false}
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    fill="currentColor"
+    height={45}
+    stroke="currentColor"
+    strokeWidth="0"
+    style={
+      Object {
+        "color": undefined,
+      }
+    }
+    viewBox="0 0 24 24"
+    width={45}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g
+      key="0"
+    >
+      <path
+        d="M0 0h24v24H0z"
+        fill="none"
+        key="0"
+      />
+      <path
+        d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-4.586 6l1.768 1.768-1.414 1.414L12 15.414l-1.768 1.768-1.414-1.414L10.586 14l-1.768-1.768 1.414-1.414L12 12.586l1.768-1.768 1.414 1.414L13.414 14zM9 4v2h6V4H9z"
+        key="1"
+      />
+    </g>
+  </svg>
+</button>
+`;

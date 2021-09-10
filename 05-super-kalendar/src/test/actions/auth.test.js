@@ -2,7 +2,7 @@ import toast from 'react-hot-toast';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
-import { startLogin, startRegister } from '../../actions/auth';
+import { startChecking, startLogin, startRegister } from '../../actions/auth';
 import * as fetchModule from '../../helpers/fetch';
 import { types } from '../../types/types';
 
@@ -79,6 +79,46 @@ describe('Test actions/auth', () => {
 		await store.dispatch(
 			startRegister('test3', 'testinggg@gmail.com', '123456')
 		);
+		const actions = store.getActions();
+
+		expect(actions[0]).toEqual({
+			type: types.authLogin,
+			payload: {
+				uid: fakeJsonReturn.uid,
+				name: fakeJsonReturn.name,
+			},
+		});
+
+		expect(localStorage.setItem).toBeCalledWith(
+			'token',
+			fakeJsonReturn.token
+		);
+
+		expect(localStorage.setItem).toBeCalledWith(
+			'token-init-date',
+			expect.any(Number)
+		);
+	});
+
+	test('startChecking should work properly', async () => {
+		// use mock to not populate db with testing info
+		const fakeJsonReturn = {
+			ok: true,
+			uid: '12312245',
+			name: 'Max',
+			token: '2193912j32jh1',
+		};
+
+		fetchModule.fetchWithToken = jest.fn(() => ({
+			json() {
+				return {
+					...fakeJsonReturn,
+				};
+			},
+		}));
+
+		await store.dispatch(startChecking());
+
 		const actions = store.getActions();
 
 		expect(actions[0]).toEqual({

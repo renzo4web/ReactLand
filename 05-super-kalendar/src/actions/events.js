@@ -4,7 +4,7 @@ import { prepareEvents } from '../helpers/prepareEvents';
 import { types } from '../types/types';
 
 /*
-	ADDING THE EVENTS TO DB
+    ADDING THE EVENTS TO DB
 */
 
 export const eventStartAddNew = event => {
@@ -51,7 +51,7 @@ export const cleanActiveEvent = () => ({
 });
 
 /*
-	UPDATE EVENT
+    UPDATE EVENT
 */
 export const eventStartUpdate = event => {
 	return async dispatch => {
@@ -81,13 +81,12 @@ const updatedEvent = event => ({
 });
 
 /*
-	DELETE EVENT
+    DELETE EVENT
 */
 
 export const eventStartDelete = () => {
 	return async (dispatch, getState) => {
 		const { activeEvent } = getState().calendar;
-
 		try {
 			const response = await fetchWithToken(
 				`events/${activeEvent.id}`,
@@ -118,7 +117,7 @@ export const eventsCleanAll = () => ({
 });
 
 /*
-	LOADING THE EVENTS FROM DB
+    LOADING THE EVENTS FROM DB
 */
 
 export const eventStartLoading = () => {

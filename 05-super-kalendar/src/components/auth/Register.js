@@ -6,7 +6,7 @@ import { useForm } from '../../hooks/useForm';
 import toast from 'react-hot-toast';
 import { startRegister } from '../../actions/auth';
 
-const Register = ({ onFinish }) => {
+const Register = () => {
 	const dispatch = useDispatch();
 
 	const [formRegisterVals, handleRegisterInputChange] = useForm({

@@ -6,9 +6,6 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 const LoginScreen = () => {
-	const onFinish = values => {
-		console.log('Received values of form: ', values);
-	};
 	return (
 		<Container className="my-auto">
 			<Row
@@ -16,10 +13,10 @@ const LoginScreen = () => {
 				as="main"
 			>
 				<Col sm>
-					<Login onFinish={onFinish} />
+					<Login />
 				</Col>
 				<Col sm>
-					<Register onFinish={onFinish} />
+					<Register />
 				</Col>
 			</Row>
 		</Container>
