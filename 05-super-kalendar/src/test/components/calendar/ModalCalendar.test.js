@@ -141,7 +141,12 @@ describe('Test components/calendar/ModalCalendar', () => {
 			preventDefault() {},
 		});
 
-		expect(eventStartAddNew).toHaveBeenCalled();
+		expect(eventStartAddNew).toHaveBeenCalledWith({
+			end: expect.anything(),
+			start: expect.anything(),
+			title: 'Hello World',
+			notes: expect.any(String),
+		});
 
 		expect(toast.error).not.toHaveBeenCalled();
 	});
