@@ -18,3 +18,4 @@ const CalendarApp = () => {
 };
 
 export default CalendarApp;
+/* Copyright Renzo Barrios 2021. All Rights Reserved */
