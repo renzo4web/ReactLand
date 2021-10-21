@@ -19,3 +19,5 @@ Why Firebase ?
 I use firebase in this case for two reasons, the first is that I am not a backend developer and firebase is ready out of the box. the second is that firebase has Realtime database and that is good because the bugs are stored in a single collection i.e. all users can see the bugs of others and the real time a team member can see when the bug list is updated.
 
 [Live](https://bugtracker-r4w.netlify.app/)
+
+ Copyright 2021, Renzo Barrios, All rights reserved.
